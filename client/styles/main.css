@@ -1,0 +1,20 @@
+#searchBar {
+  margin: 15px 10px;
+}
+  
+.tableWrapper {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+td span.glyphicon.glyphicon-remove:hover {
+  color: darkred;
+}
+
+td span.glyphicon.glyphicon-remove {
+  color: red;
+}

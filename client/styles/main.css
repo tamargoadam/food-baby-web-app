@@ -10,11 +10,3 @@
 .pointer {
   cursor: pointer;
 }
-
-td span.glyphicon.glyphicon-remove:hover {
-  color: darkred;
-}
-
-td span.glyphicon.glyphicon-remove {
-  color: red;
-}

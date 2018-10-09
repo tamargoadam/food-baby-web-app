@@ -14,12 +14,40 @@
 
 <body ng-app="foodApp">
 
-  <div><a href="#/freeFood">Free Food</a></div>
+  <!-- header -->
+  <div class ="topnav">
+
+    <!-- Logo -->
+		<a id="logo-link" href="index.html">
+        <img class="topnav-logo" src="assets/images/foodbaby_temp.jpg" alt="Food Baby logo">
+    </a>
+
+      <!-- Page links -->
+		<div class="topnav-right">
+      <div class="topnav-placeholder"></div>
+        <a class="topnav-link" href="./templates/freeFood.html">Free Food</a>
+        <a class="topnav-link" href="./templates/locations.html">Locations</a>
+        <a class="topnav-link" href="./templates/addFreeFood.html">Add Free Food</a>
+    </div>
+  
+      <!-- Drop down menu -->
+      <a href="javascript:void(0);" class="topnav-link topnav-menu-icon" onclick="dropDownMenu()">
+        &#9776;
+      </a>
+  </div>
+
+  <!-- placeholder -->
+  <h2>Placeholder heading</h2>
+  <!-- food baby image -->
+  <img src=".\assets\images\foodbaby_temp.jpg" alt="Taco Baby" width="1000" height="694">
+  <p>This is some text. Eventually we'll put something more useful here. Until then, here's a picture of a food baby.</p>
+
+ <!-- <div><a href="#/freeFood">Free Food</a></div>
   <div><a href="#/locations">Locations</a></div>
   <div><a href="#/addFreeFood">Add Free Food</a></div>
   <div>
     <ng-view></ng-view>
-  </div>
+  </div> -->
 
   <!-- TODO move this into it's own controller file -->
   <script>
@@ -27,10 +55,10 @@
     app.config(function ($routeProvider) {
       $routeProvider
         .when("/freeFood", {
-          template: "Free Food"
+          templateUrl: "./templates/freeFood.html"
         })
         .when("/locations", {
-          template: "Locations"
+          template: "templates/locations.html"
         })
         .when("/addFreeFood", {
           templateUrl: "templates/addFreeFood.html"
@@ -38,9 +66,6 @@
         })
     });
   </script>
-
-
-
 </body>
 
 </html>

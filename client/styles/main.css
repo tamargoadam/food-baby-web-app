@@ -1,6 +1,7 @@
 :root {
 	/* Site colors */
-	--dark-primary-color: #303F9F;
+	/*--dark-primary-color: #303F9F;*/
+	--dark-primary-color: #ffffff
  	--light-primary-color: #C5CAE9;
  	--primary-color: #3F51B5;
  	--text-icon-color: #FFFFFF;
@@ -13,6 +14,8 @@
 	--primary-text-color: #212121;
 	--secondary-text-color: #757575;
 }
+
+
 
 #searchBar {
   margin: 15px 10px;
@@ -73,10 +76,21 @@
 	font-size: 20px;
 }
 
-/* Move each link to the right side of the page */
+/* Move link to the right side of the page */
 .topnav .topnav-right {
 	float: right;
 }
+
+/* Move link to the right side of the page */
+.topnav .topnav-left {
+	float: left;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+	background-color: #4CAF50;
+	color: white;
+  }
 
 /* External link icon */
 .external-link {

@@ -1,0 +1,33 @@
+[{
+    "organization": "ACM",
+    "eventname": "Cookie Fridays",
+    "building": "cise building room 415",
+    "address": "1263 University",
+    "city": "Gainesville",
+    "state": "Florida",
+    "zipcode": "32824"
+}, {
+    "organization": "WICSE",
+    "eventname": "Pizza and Mingle",
+    "building": "cise building room 415",
+    "address": "1263 University",
+    "city": "Gainesville",
+    "state": "Florida",
+    "zipcode": "32824"
+}, {
+    "organization": "OAR",
+    "eventname": "Putlock",
+    "building": "cise building room 415",
+    "address": "1263 University",
+    "city": "Gainesville",
+    "state": "Florida",
+    "zipcode": "32824"
+}, {
+    "organization": "WECE",
+    "eventname": "Chicken for checken nuggets",
+    "building": "cise building room 415",
+    "address": "1263 University",
+    "city": "Gainesville",
+    "state": "Florida",
+    "zipcode": "32824"
+}]

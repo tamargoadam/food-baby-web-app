@@ -1,0 +1,11 @@
+<div ng-controller="DirectoryController">
+  <h1>This is the directory of food</h1>
+  <br>
+  <p> Search bar </p>
+  <input type="text" ng-model="search" />
+  <ul>
+    <li ng-repeat="food in foods | filter: search">
+      {{food.eventname}}
+    </li>
+  </ul> 
+</div>

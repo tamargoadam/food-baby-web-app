@@ -59,6 +59,7 @@ myFoodBaby.controller('DirectoryController', ['$scope', 'Posts', ($scope, Posts)
   function getAllData() {
     Posts.getData().then((responseData) => {
       $scope.foods = responseData.data;
+
     }, (err) => {
       console.log("Unable to retrieve posts: ", err);
     });

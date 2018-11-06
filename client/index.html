@@ -1,72 +1,25 @@
 <!DOCTYPE html>
-<html>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ=="
-  crossorigin="anonymous"></script>
-<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
-<script src="https://code.angularjs.org/1.4.3/angular-route.js"></script>
+<html ng-app="myFoodBaby">
 
 <head>
-  <title>Food Baby</title>
   <meta charset="utf-8" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" href="styles/main.css">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Food Baby</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
 
-<body ng-app="foodApp">
-  
-  <!-- header -->
-  <div class="topnav">
-  
-    <!-- Logo -->
-    <a id="logo-link" href="#/home">
-      <img class="topnav-logo" src="assets/images/foodbaby_temp.jpg" alt="Food Baby logo">
-    </a>
-  
-    <!-- Page links -->
-    <div class="topnav-right">
-      <div class="topnav-placeholder"></div>
-      <a class="topnav-link" href="#/freeFood">Free Food</a>
-      <a class="topnav-link" href="#/locations">Locations</a>
-      <a class="topnav-link" href="#/addFreeFood">Add Free Food</a>
-    </div>
-  
-    <!-- Drop down menu -->
-    <a href="javascript:void(0);" class="topnav-link topnav-menu-icon" onclick="dropDownMenu()">
-      &#9776;
-    </a>
-  </div>
-
-  
-  <!-- <div><a href="#/home">Home</a></div>
-  <div><a href="#/freeFood">Free Food</a></div>
-  <div><a href="#/locations">Locations</a></div>
-  <div><a href="#/addFreeFood">Add Free Food</a></div> -->
-  <div>
-    <ng-view></ng-view>
-  </div>
-
-  <!-- TODO move this into it's own controller file -->
-  <script>
-    var app = angular.module("foodApp", ["ngRoute"]);
-    app.config(function ($routeProvider) {
-      $routeProvider
-        .when("/home", {
-          templateUrl: "templates/home.html"
-        })
-        .when("/freeFood", {
-          templateUrl: "./templates/freeFood.html"
-        })
-        .when("/locations", {
-          templateUrl: "templates/locations.html"
-        })
-        .when("/addFreeFood", {
-          templateUrl: "templates/addFreeFood.html"
-          // template: "<div> hello Jordan </div>"
-        })
-    });
-  </script>
+<body>
+  <header ng-include="'views/header.html'"></header>
+  <main class="main" ng-view></main>
+  <!-- JavaScript Files -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/angular.js"></script>
+  <script src="js/angular-route.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/angularApp.js"></script>
 </body>
 
 </html>

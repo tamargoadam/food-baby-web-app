@@ -17,7 +17,6 @@ router.route('/').get((req, res) => {
       res.status(404).send(err);
     }
     var today = new Date();
-    var todaysDate = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     var todaysYear = today.getFullYear();
     var todaysMonth = today.getMonth() + 1;
     var todaysDay = today.getDate();

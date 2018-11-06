@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "DEBUG=app nodemon app.js",
+    "startWin": "DEBUG=app & nodemon app.js",
     "lint": "eslint app.js"
   },
   "author": "",

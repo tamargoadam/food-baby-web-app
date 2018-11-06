@@ -8,57 +8,58 @@
 <script src="https://code.angularjs.org/1.4.3/angular-route.js"></script>
 
 <head>
+  <title>Food Baby</title>
+  <meta charset="utf-8" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles/main.css">
 </head>
 
 <body ng-app="foodApp">
-
+  
   <!-- header -->
-  <div class ="topnav">
-
+  <div class="topnav">
+  
     <!-- Logo -->
-		<a id="logo-link" href="index.html">
-        <img class="topnav-logo" src="assets/images/foodbaby_temp.jpg" alt="Food Baby logo">
+    <a id="logo-link" href="#/home">
+      <img class="topnav-logo" src="assets/images/foodbaby_temp.jpg" alt="Food Baby logo">
     </a>
-
-      <!-- Page links -->
-		<div class="topnav-right">
+  
+    <!-- Page links -->
+    <div class="topnav-right">
       <div class="topnav-placeholder"></div>
-        <a class="topnav-link" href="./templates/freeFood.html">Free Food</a>
-        <a class="topnav-link" href="./templates/locations.html">Locations</a>
-        <a class="topnav-link" href="./templates/addFreeFood.html">Add Free Food</a>
+      <a class="topnav-link" href="#/freeFood">Free Food</a>
+      <a class="topnav-link" href="#/locations">Locations</a>
+      <a class="topnav-link" href="#/addFreeFood">Add Free Food</a>
     </div>
   
-      <!-- Drop down menu -->
-      <a href="javascript:void(0);" class="topnav-link topnav-menu-icon" onclick="dropDownMenu()">
-        &#9776;
-      </a>
+    <!-- Drop down menu -->
+    <a href="javascript:void(0);" class="topnav-link topnav-menu-icon" onclick="dropDownMenu()">
+      &#9776;
+    </a>
   </div>
 
-  <!-- placeholder -->
-  <h2>Placeholder heading</h2>
-  <!-- food baby image -->
-  <img src=".\assets\images\foodbaby_temp.jpg" alt="Taco Baby" width="1000" height="694">
-  <p>This is some text. Eventually we'll put something more useful here. Until then, here's a picture of a food baby.</p>
-
- <!-- <div><a href="#/freeFood">Free Food</a></div>
+  
+  <!-- <div><a href="#/home">Home</a></div>
+  <div><a href="#/freeFood">Free Food</a></div>
   <div><a href="#/locations">Locations</a></div>
-  <div><a href="#/addFreeFood">Add Free Food</a></div>
+  <div><a href="#/addFreeFood">Add Free Food</a></div> -->
   <div>
     <ng-view></ng-view>
-  </div> -->
+  </div>
 
   <!-- TODO move this into it's own controller file -->
   <script>
     var app = angular.module("foodApp", ["ngRoute"]);
     app.config(function ($routeProvider) {
       $routeProvider
+        .when("/home", {
+          templateUrl: "templates/home.html"
+        })
         .when("/freeFood", {
           templateUrl: "./templates/freeFood.html"
         })
         .when("/locations", {
-          template: "templates/locations.html"
+          templateUrl: "templates/locations.html"
         })
         .when("/addFreeFood", {
           templateUrl: "templates/addFreeFood.html"

@@ -60,6 +60,9 @@ var schema = new mongoose.Schema({
     type: String,
     description: "must be a time and be greater than timeFrom and is required",
     required: true
+  }, 
+  voting: {
+    type: Number
   }
 });
 

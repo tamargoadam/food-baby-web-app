@@ -7,4 +7,5 @@ Notes for running web server:
 make sure to install all npm dependencies
 
 use command to start server: npm start
+
 go to localhost at port 4000

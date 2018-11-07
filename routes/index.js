@@ -1,6 +1,6 @@
 /* Require Statements */
 const express = require('express');
-const debug = require('debug')('app');
+// const debug = require('debug')('app');
 const router = express.Router(); // encapsulate all of our Routes
 
 /** Get schema for all the food posts */
@@ -13,7 +13,8 @@ router.route('/').get((req, res) => {
 
   Post.find((err, posts) => {
     if (err) {
-      debug(err);
+      // debug(err);
+      console.log(err);
       res.status(404).send(err);
     }
     var today = new Date();
@@ -61,7 +62,8 @@ router.route('/').post((req, res) => {
   // send the post object into the DB aka save it
   post.save((err) => {
     if (err) {
-      debug(err);
+      // debug(err);
+      console.log(err);
       res.status(404).send(err);
     }
     res.json(post);

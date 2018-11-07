@@ -1,6 +1,6 @@
 /* Require Statements */
 const express = require('express');
-const debug = require('debug')('app');
+// const debug = require('debug')('app');
 const chalk = require('chalk');
 const morgan = require('morgan'); // this gives us a lot of information
 const path = require('path'); // included already
@@ -44,5 +44,6 @@ app.get('/', (req, res) => {
 /** 7. When it starts listening on the port, it will execute the callback function */
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  debug(`Listening on port ${chalk.green(port)}`);
+  // debug(`Listening on port `);
+  console.log(`Listing on port ${chalk.green(port)}`);
 });

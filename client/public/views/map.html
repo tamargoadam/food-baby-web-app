@@ -1,40 +1,40 @@
-<!DOCTYPE html>
 <!-- mapbox api -->
+<!DOCTYPE html>
 <html>
 <head>
   	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
 	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
 	<style>
-		#map { position:absolute; top:0; bottom:0; width:100%; height:100%;}
+		body {margin: 0; padding: 0;}
+		#map { position:absolute; top: 0; bottom: 0; width: 100%;}
 	</style>
 </head>
 <body>
-<!-- mapbox api -->
-  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
-  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css'
-  	type='text/css' />
-  <div id = 'map'></div>
-  <script>
-    L.mapboxgl.accessToken =
-      'pk.eyJ1IjoiZGF2aWRtYW50YTciLCJhIjoiY2pueW8yZ3VuMDM2NjNrczYxcWV0bGFlbiJ9.s5mhJ0Aoe-j4yzqeHM-TmQ';
+	<!-- mapbox api -->
+	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
+	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css' type='text/css' />
+  	<div id='map'>
+	</div>
+	<script>
+	  mapboxgl.accessToken =
+	    'pk.eyJ1IjoiZGF2aWRtYW50YTciLCJhIjoiY2pueW8yZ3VuMDM2NjNrczYxcWV0bGFlbiJ9.s5mhJ0Aoe-j4yzqeHM-TmQ';
 
-   var bounds = [
-      [-82.3802, 29.6200],
-      [-82.3304, 29.6640]
-    ];
+	  var bounds = [
+	    [-82.3802, 29.6200],
+	    [-82.3304, 29.6640]
+	  ];
 
-    var map = new mapboxgl.Map({
-     container: 'map',
-     height: 100%,
-     style: 'mapbox://styles/mapbox/streets-v9',
-     center: [-82.3478, 29.6463],
-      maxBounds: bounds,
-     zoom: 13
-   });
+	  var map = new mapboxgl.Map({
+	    container: 'map',
+	    style: 'mapbox://styles/mapbox/streets-v9',
+	    center: [-82.3478, 29.6463],
+	    maxBounds: bounds,
+	    zoom: 13
+	  });
 
-  map.addControl(new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken
-  }));
-</script>
+	  map.addControl(new MapboxGeocoder({
+	    accessToken: mapboxgl.accessToken
+	  }));
+	</script>
 </body>
 </html>

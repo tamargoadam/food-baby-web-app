@@ -1,6 +1,6 @@
 <div class="container" ng-controller="DirectoryController">
   <div class="row">
-    <h1>Free Food Available</h1>
+    <h1>Upcoming Events</h1>
     <br>
   </div>
   <form>
@@ -12,6 +12,10 @@
         <input type="text" class="form-control" ng-model="search">
       </div>
     </div>
+    <span class="col-md-6" id="infoBox">
+      <h2>Detailed Information</h2>
+      <p id = "moreDetails"></p> 
+    </span>
     <div class="form-group row">
       <div class="col-xs-1">
         <strong>Filter:</strong>
@@ -22,10 +26,19 @@
     </div>
     <!-- need to add filter features -->
   </form>
+  <table id="dirtable">
+    <tr>
+      <th> Organization </th>
+      <th> Event Name </th>
+      <th> Date </th>
+      <th></th>
+    </tr>
+    <tr ng-repeat="food in foods | filter: search" ng-click = "showDetails(food)">
+        <td>{{food.organization}}</td>
+        <td>{{food.eventname}}</td>
+        <td>{{food.date}}</td>
+        <td><button ng-click = "deleteFood(food)">delete</button></td>
+    </tr>
+  </table>
 
-  <div class="shaded">
-    <div ng-repeat="food in foods | filter: search">
-      {{food.eventname}}
-    </div>
-  </div>
 </div>

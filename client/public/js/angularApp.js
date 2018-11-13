@@ -56,6 +56,8 @@ myFoodBaby.controller('FoodFormController', ['$scope', 'Posts', ($scope, Posts) 
 
 /* 5. Controller for the directory of free food */
 myFoodBaby.controller('DirectoryController', ['$scope', 'Posts', ($scope, Posts) => {
+  $scope.detailedInfo = undefined;
+  $scope.foods = Posts;
   function getAllData() {
     Posts.getData().then((responseData) => {
       $scope.foods = responseData.data;
@@ -65,5 +67,19 @@ myFoodBaby.controller('DirectoryController', ['$scope', 'Posts', ($scope, Posts)
     });
   }
   getAllData(); //calls this function to initialize list with the data
+
+  $scope.deleteFood = function(food) {
+		var deletedFood = $scope.foods.indexOf(food);
+		$scope.foods.splice(deletedFood, 1);	
+  };
+  
+  $scope.showDetails = function(food) {
+		var listingNumber = $scope.foods.indexOf(food);
+		$scope.detailedInfo = "Listing Number = " + listingNumber + "<br>" 
+							+ "Listing Organization = " + $scope.foods[listingNumber].organization + "<br>"  
+							+ "Listing City = " + $scope.foods[listingNumber].city;
+		console.log($scope.detailedInfo);
+		document.getElementById("moreDetails").innerHTML = $scope.detailedInfo;
+	};
 
 }]);

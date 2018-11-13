@@ -1,17 +1,16 @@
 :root {
 	/* Site colors */
-	/*--dark-primary-color: #303F9F;*/
-	--dark-primary-color: #ffffff --light-primary-color: #C5CAE9;
+	--dark-primary-color: rgb(44, 88, 233);
+	--light-primary-color: rgb(140, 174, 216);
 	--primary-color: #3F51B5;
-	--text-icon-color: #FFFFFF;
-	--accent-color: #4CAF50;
+	--accent-color: #808080;
 	--divider-color: #BDBDBD;
 	--background-color: #FFFFFF;
 	--shadow-color: hsla(0, 0%, 0%, 0.2);
 
 	/* Text color */
 	--primary-text-color: #212121;
-	--secondary-text-color: #757575;
+	--secondary-text-color: #EDEDED;
 }
 
 .sidenav {
@@ -30,18 +29,19 @@
 	padding: 6px 8px 6px 16px;
 	text-decoration: none;
 	font-size: 25px;
-	color: #818181;
+	color: var(--secondary-text-color);
 	display: block;
 }
 
-.sidenav a:hover {
-	color: #f1f1f1;
+.sidenav h1 {
+	padding: 6px 8px 6px 16px;
+	color: var(--secondary-text-color);
+	background-color: var(--light-primary-color);
 }
 
-.main {
-	margin-left: 160px;
-	/* Same width of the sidenav */
-	padding: 0px 10px;
+.sidenav a:hover {
+	color: var(--secondary-text-color);
+	background-color: var(--light-primary-color);
 }
 
 #map {
@@ -49,14 +49,50 @@
 	top: 0;
 	bottom: 0;
 	width: 100%;
-	height: 100%;
+	height: 100%;}
+	.main {
+	margin-left: 160px;
+	/* Same width of the sidenav */
+	padding: 0px 10px;
+	}
+
+
+.shaded {
+	background-color: #FAFAFA;
 }
 
+#infoBox {
+	float:right;
+	width: 40%;
+}
 
+table#dirtable {
+	width : 60%;
+}
 
+table#dirtable, th, td {
+	border: 1 px solid black;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 10px;
+	text-align: left;
+}
+
+table#dirtable tr:nth-child(even) {
+	background-color: var(--divider-color);
+}
+
+table#dirtable tr:nth-child(odd) {
+	background-color: var(--accent-color);
+}
+
+table#dirtable th {
+	background-color: var(--light-primary-color);
+}
 
 /* Their code */
-
 
 #searchBar {
 	margin: 15px 10px;
@@ -71,70 +107,27 @@
 	cursor: pointer;
 }
 
-/* The header bar */
-.topnav {
-	overflow: hidden;
-	background-color: var(--primary-color);
+/* For the card-columns */
+@media (min-width: 36em) {
+    .card-columns {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
 }
 
-/* The logo in the header */
-.topnav .topnav-logo {
-	float: left;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: 100px;
-	height: 69px;
-	padding: 10px 16px;
+@media (min-width: 47em) {
+    .card-columns {
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+    }
 }
 
-/* Links in the header*/
-.topnav .topnav-link {
-	float: left;
-	display: block;
-	color: var(--text-icon-color);
-	text-align: center;
-	padding: 28px 16px;
-	text-decoration: none;
-	font-family: var(--header-font);
-}
-
-/* Keep the logo in the box */
-#logo-link {
-	box-sizing: initial;
-}
-
-/* Links in the header when a mouse is over them */
-.topnav .topnav-link:hover {
-	border-bottom: 4px solid var(--accent-color);
-	padding-bottom: 24px;
-	color: var(--accent-color);
-}
-
-/* The header menu is only visible when the screen is small */
-.topnav .topnav-menu-icon {
-	display: none;
-	font-size: 20px;
-}
-
-/* Move link to the right side of the page */
-.topnav .topnav-right {
-	float: right;
-}
-
-/* Move link to the right side of the page */
-.topnav .topnav-left {
-	float: left;
-}
-
-/* Add a color to the active/current link */
-.topnav a.active {
-	background-color: #4CAF50;
-	color: white;
-}
-
-/* External link icon */
-.external-link {
-	color: var(--light-primary-color);
-	font-size: .75em;
+@media (min-width: 63em) {
+    .card-columns {
+        -webkit-column-count: 4;
+        -moz-column-count: 4;
+        column-count: 4;
+    }
 }

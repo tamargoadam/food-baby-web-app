@@ -14,9 +14,9 @@ myFoodBaby.config(['$routeProvider', ($routeProvider) => {
     .when('/addFood', {
       templateUrl: 'views/templates/addFood.html'
     }).otherwise({
-    // if any other page then redirect to 
-    redirectTo: '/directory'
-  });
+      // if any other page then redirect to 
+      redirectTo: '/directory'
+    });
 }]);
 
 /* 3. Factory for our application */
@@ -52,6 +52,15 @@ myFoodBaby.controller('FoodFormController', ['$scope', 'Posts', ($scope, Posts) 
     $scope.newfood = null; //initialize all the form data back to null
   }
   $scope.addFreeFood = addFoodFunc;
+
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1; //January is 0!
+  var yyyy = today.getFullYear();
+  var todayDate = yyyy + '-' + mm + '-' + dd;
+  $scope.date = todayDate;
+  $scope.year = yyyy;
+
 }]);
 
 /* 5. Controller for the directory of free food */

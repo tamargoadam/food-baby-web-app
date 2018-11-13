@@ -21,7 +21,7 @@
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background-color: var(--primary-color);
+	background-color: #3F51B5;
 	overflow-x: hidden;
 	padding-top: 20px
 }
@@ -30,12 +30,19 @@
 	padding: 6px 8px 6px 16px;
 	text-decoration: none;
 	font-size: 25px;
-	color: #818181;
+	color: #EDEDED;
 	display: block;
 }
 
+.sidenav h1 {
+	padding: 6px 8px 6px 16px;
+	color: #EDEDED;
+	background-color: #4CAF50;
+}
+
 .sidenav a:hover {
-	color: #f1f1f1;
+	color: #EDEDED;
+	background-color: #4CAF50;
 }
 
 .main {
@@ -52,7 +59,9 @@
 	height: 100%;
 }
 
-
+.shaded {
+	background-color: #FAFAFA;
+}
 
 
 /* Their code */

@@ -1,21 +1,20 @@
 :root {
 	/* Site colors */
 	/*--dark-primary-color: #303F9F;*/
-	--dark-primary-color: #ffffff
- 	--light-primary-color: #C5CAE9;
- 	--primary-color: #3F51B5;
- 	--text-icon-color: #FFFFFF;
+	--dark-primary-color: #ffffff --light-primary-color: #C5CAE9;
+	--primary-color: #3F51B5;
+	--text-icon-color: #FFFFFF;
 	--accent-color: #4CAF50;
-	--divider-color: #BDBDBD;	
+	--divider-color: #BDBDBD;
 	--background-color: #FFFFFF;
 	--shadow-color: hsla(0, 0%, 0%, 0.2);
 
-	 /* Text color */
+	/* Text color */
 	--primary-text-color: #212121;
 	--secondary-text-color: #757575;
 }
 
-.sidenav{
+.sidenav {
 	height: 100%;
 	width: 160px;
 	position: fixed;
@@ -27,24 +26,31 @@
 	padding-top: 20px
 }
 
-.sidenav a{
+.sidenav a {
 	padding: 6px 8px 6px 16px;
 	text-decoration: none;
 	font-size: 25px;
 	color: #818181;
 	display: block;
 }
-.sidenav a:hover{
+
+.sidenav a:hover {
 	color: #f1f1f1;
 }
 
-.main{
-	margin-left: 160px; /* Same width of the sidenav */
+.main {
+	margin-left: 160px;
+	/* Same width of the sidenav */
 	padding: 0px 10px;
 }
 
-
-
+#map {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+}
 
 
 
@@ -53,16 +59,16 @@
 
 
 #searchBar {
-  margin: 15px 10px;
+	margin: 15px 10px;
 }
-  
+
 .tableWrapper {
-  max-height: 400px;
-  overflow: auto;
+	max-height: 400px;
+	overflow: auto;
 }
 
 .pointer {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 /* The header bar */
@@ -77,7 +83,7 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-	width: 100px; 
+	width: 100px;
 	height: 69px;
 	padding: 10px 16px;
 }
@@ -125,7 +131,7 @@
 .topnav a.active {
 	background-color: #4CAF50;
 	color: white;
-  }
+}
 
 /* External link icon */
 .external-link {

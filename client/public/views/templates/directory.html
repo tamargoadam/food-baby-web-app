@@ -1,13 +1,13 @@
 <div ng-controller="DirectoryController">
   <h1>Free Food Available</h1>
   <br>
-  <p> Search bar  <input type="text" ng-model="search"/></p>
+  <p> Search bar <input type="text" ng-model="search" /></p>
   <p>Filter:</p>
   <!-- need to add filter features -->
- 
+
   <div>
     <div ng-repeat="food in foods | filter: search">
       {{food.eventname}}
     </div>
-  </div> 
+  </div>
 </div>

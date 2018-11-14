@@ -61,6 +61,18 @@
 	background-color: #FAFAFA;
 }
 
+.card {
+	overflow:hidden;
+}
+
+.showme {
+ display:none;
+}
+/* TODO: add animation on hover */
+.card:hover .showme {
+	display:block;
+}
+
 #infoBox {
 	float:right;
 	width: 40%;

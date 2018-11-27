@@ -1,77 +1,106 @@
 :root {
 	/* Site colors */
-	--dark-primary-color: rgb(44, 88, 233);
-	--light-primary-color: rgb(140, 174, 216);
-	--primary-color: #3F51B5;
-	--accent-color: #808080;
-	--divider-color: #BDBDBD;
-	--background-color: #FFFFFF;
-	--shadow-color: hsla(0, 0%, 0%, 0.2);
+	--dark-primary-color: #31353B;
+	--light-primary-color: #F1F2EE;
 
 	/* Text color */
-	--primary-text-color: #212121;
+	--primary-text-color: #31353B;
 	--secondary-text-color: #EDEDED;
 }
 
+body {
+	font-family: 'Raleway', sans-serif;
+	background-color: var(--light-primary-color);
+}
+
 .sidenav {
+	font-family: 'Nothing You Could Do', cursive;
 	height: 100%;
 	width: 160px;
 	position: fixed;
 	z-index: 1;
 	top: 0;
 	left: 0;
-	background-color: var(--primary-color);
+	background-color: var(--dark-primary-color);
 	overflow-x: hidden;
 	padding-top: 20px
+}
+
+/* Title */
+.sidenav h1 {
+	padding: 6px 8px 6px 16px;
+	color: var(--secondary-text-color);
+	background-color: var(--dark-primary-color);
+}
+
+#logo{
+	height: 115px;
+	width: auto;
 }
 
 .sidenav a {
 	padding: 6px 8px 6px 16px;
 	text-decoration: none;
-	font-size: 25px;
+	font-size: 24px;
 	color: var(--secondary-text-color);
 	display: block;
 }
 
-.sidenav h1 {
-	padding: 6px 8px 6px 16px;
-	color: var(--secondary-text-color);
-	background-color: var(--light-primary-color);
-}
-
+/* hover over different site pages */
 .sidenav a:hover {
-	color: var(--secondary-text-color);
+	color: var(--primary-text-color);
 	background-color: var(--light-primary-color);
 }
 
-#map {
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	width: 100%;
-	height: 100%;}
-	.main {
+.main {
 	margin-left: 160px;
 	/* Same width of the sidenav */
-	padding: 0px 10px;
-	}
+	padding: 20px 10px;
+}
 
+.main-title {
+	padding-bottom: 14px;
+}
 
-.shaded {
+.container{
+	margin-left: 20px;
+}
+
+.card{
+	/* height: 100px; */
+	/* width: 100px; */
+}
+
+.card-img-top{
+	opacity: 1.0;
+	/* height: 50%;
+	width: 50%; */
+}
+
+.card-img-top:hover{
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+/* .shaded {
 	background-color: #FAFAFA;
 }
 
 .card {
-	overflow:hidden;
+	overflow: hidden;
 }
 
 .showme {
- display:none;
-}
-/* TODO: add animation on hover */
+	display: none;
+} */
+
+
 .card:hover .showme {
 	display:block;
 }
+
+/* TODO: add animation on hover */
+/* 
 
 #infoBox {
 	float:right;
@@ -102,10 +131,10 @@ table#dirtable tr:nth-child(odd) {
 
 table#dirtable th {
 	background-color: var(--light-primary-color);
-}
+} */
 
 /* Their code */
-
+/* 
 #searchBar {
 	margin: 15px 10px;
 }
@@ -117,10 +146,10 @@ table#dirtable th {
 
 .pointer {
 	cursor: pointer;
-}
+} */
 
 /* For the card-columns */
-@media (min-width: 36em) {
+/* @media (min-width: 36em) {
     .card-columns {
         -webkit-column-count: 2;
         -moz-column-count: 2;
@@ -142,4 +171,4 @@ table#dirtable th {
         -moz-column-count: 4;
         column-count: 4;
     }
-}
+} */

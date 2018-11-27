@@ -26,6 +26,10 @@ body {
 	padding-top: 20px
 }
 
+.main-title{
+	font-family: 'Nothing You Could Do', cursive;
+}
+
 /* Title */
 .sidenav h1 {
 	padding: 6px 8px 6px 16px;

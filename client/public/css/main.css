@@ -36,6 +36,7 @@ body {
 #logo{
 	height: 115px;
 	width: auto;
+	margin-bottom: 25px;
 }
 
 .sidenav a {
@@ -59,16 +60,17 @@ body {
 }
 
 .main-title {
-	padding-bottom: 14px;
+	padding-bottom: 30px;
+	padding-left: 15px;
 }
 
 .container{
 	margin-left: 20px;
 }
 
-.card{
-	/* height: 100px; */
-	/* width: 100px; */
+/* Form */
+.form-indent{
+	padding-left: 15px;
 }
 
 .card-img-top{

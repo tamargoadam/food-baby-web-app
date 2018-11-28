@@ -155,7 +155,7 @@ table#dirtable th {
 } */
 
 /* For the card-columns */
-/* @media (min-width: 36em) {
+@media (min-width: 36em) {
     .card-columns {
         -webkit-column-count: 2;
         -moz-column-count: 2;
@@ -177,4 +177,4 @@ table#dirtable th {
         -moz-column-count: 4;
         column-count: 4;
     }
-} */
+}

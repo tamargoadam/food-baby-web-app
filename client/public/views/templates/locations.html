@@ -1,11 +1,11 @@
 <div>
-  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
   <h2 class="main-title">Map of free food</h2>
   <div id="mapbox">
     <a id="mapAPI">
-      <iframe src="./views/map.html" width=900 height=600>
+      <iframe src="./views/map.html" width="100%" height="100%">
       </iframe>
     </a>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh-MmFRXG5EfNFillIGcOrqKWT41NfeX4&callback=initMap"
+    async defer></script>
   </div>
 </div>

@@ -42,6 +42,6 @@ app.get('/', (req, res) => {
 
 /** 7. When it starts listening on the port, it will execute the callback function */
 const port = process.env.PORT || 4000;
-app.listen(port, () => { 
+app.listen(port, () => {
   console.log(`Listing on port ${chalk.green(port)}`);
 });

@@ -62,7 +62,8 @@ var schema = new mongoose.Schema({
     required: true
   }, 
   voting: {
-    type: Number
+    type: Number,
+    required: true
   }
 });
 

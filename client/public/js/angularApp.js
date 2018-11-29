@@ -13,6 +13,16 @@ myFoodBaby.config(['$routeProvider', ($routeProvider) => {
     })
     .when('/addFood', {
       templateUrl: 'views/templates/addFood.html'
+    })
+    .when('/signIn', {
+      templateUrl: 'views/templates/signIn.html'
+    })
+    .when('/adminPage', {
+      templateUrl: 'views/templates/adminPage.html',
+      // checks if the user has permission to access this route
+      access: {
+        isFree: false
+      }
     }).otherwise({
       // if any other page then redirect to 
       redirectTo: '/directory'
@@ -30,6 +40,18 @@ myFoodBaby.factory('Posts', ['$http', ($http) => {
     createPost: function (post) {
       return $http.post('https://food-baby-web-app.herokuapp.com/api/posts', post);
       // return $http.post('http://localhost:4000/api/posts', post);
+    },
+    adminGetData: function () {
+      return $http.get('https://food-baby-web-app.herokuapp.com/api/posts');
+      // return $http.get('http://localhost:4000/admin');
+    },
+    deletePost: function (id) {
+      return $http.delete('https://food-baby-web-app.herokuapp.com/api/posts/' + id);
+      // return $http.delete('http://localhost:4000/api/posts/' + id);
+    },
+    updateVote: function (id) {
+      return $http.put('https://food-baby-web-app.herokuapp.com/api/posts/' + id);
+      // return $http.put('http://localhost:4000/api/posts/' + id);
     }
   };
   return o;
@@ -40,6 +62,7 @@ myFoodBaby.controller('FoodFormController', ['$scope', 'Posts', ($scope, Posts) 
   function addFoodFunc() {
     // Uses the factory method to create a new post with the associated information from the $scope object newfood
     // $scope.newfood contains submitted information in an array
+    $scope.newfood.voting = 0;
     Posts.createPost($scope.newfood).then(() => {
       console.log("Creating a new post");
       // First we get all the posts in the DB by the factory method getData()
@@ -80,22 +103,74 @@ myFoodBaby.controller('DirectoryController', ['$scope', 'Posts', ($scope, Posts)
   }
   getAllData(); //calls this function to initialize list with the data
 
-  // $scope.deleteFood = function (food) {
-  //   var deletedFood = $scope.foods.indexOf(food);
-  //   $scope.foods.splice(deletedFood, 1);
-  // };
-
-  $scope.showDetails = function (food) {
-    // var listingNumber = $scope.foods.indexOf(food);
-    // $scope.detailedInfo = "Listing Number = " + listingNumber + "<br>" +
-    //   "Listing Organization = " + $scope.foods[listingNumber].organization + "<br>" +
-    //   "Listing City = " + $scope.foods[listingNumber].city;
-    // console.log($scope.detailedInfo);
-    // document.getElementById("moreDetails").innerHTML = $scope.detailedInfo;
-  };
+  $scope.upVote = function (index) {
+    Posts.updateVote($scope.foods[index]._id).then(() => {
+      getAllData();
+    }, function (error) { //else there is an error and we complete this function
+      console.log(error);
+    });
+  }
 
 }]);
 
+
+var admin = false;
 /* 6. Controller for the Navigation */
-myFoodBaby.controller('NavigationController', ['$scope', ($scope) => {
+myFoodBaby.controller('NavigationController', ['$scope', '$location', ($scope, $location) => {
+  $scope.isLoggedIn = function () {
+    //hide all side bar navigation except logout
+    return admin;
+  }
+  $scope.logOut = function () {
+    $location.path('#!/directory');
+    admin = false;
+  }
+}]);
+
+/* 7. Controller for Admin Login*/
+myFoodBaby.controller('LoginController', ['$scope', '$location', ($scope, $location) => {
+  $scope.errmsg = "Username or password was not correct";
+  var isErr = false;
+  $scope.adminSignIn = function () {
+    if ($scope.user.username == "admin" && $scope.user.password == "1234") {
+      //go to a separate page
+      admin = true;
+      $location.path('/adminPage');
+
+    } else {
+      //Print that their username or password was not correct
+      isErr = true;
+    }
+  }
+  $scope.isError = function () {
+    return isErr;
+  }
+
+}]);
+
+/* 8. Controller for Admin Permissions */
+myFoodBaby.controller('AdminController', ['$scope', 'Posts', ($scope, Posts) => {
+  $scope.foods = Posts;
+
+  function getAllData() {
+    Posts.adminGetData().then((responseData) => {
+      $scope.foods = responseData.data;
+
+    }, (err) => {
+      console.log("Unable to retrieve posts: ", err);
+    });
+  }
+  getAllData();
+
+
+  $scope.deleteListing = function (index) {
+    Posts.deletePost($scope.foods[index]._id).then(function () {
+      //after we delete the listing with the index and associated id, then we complete this function
+      getAllData(); //this gets all the listing info again
+    }, function (error) { //else there is an error and we complete this function
+      console.log(error);
+    });
+  };
+
+
 }]);

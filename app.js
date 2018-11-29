@@ -33,6 +33,7 @@ app.use('/js', express.static(path.join(__dirname, '/node_modules/angular-route'
 app.use('/js', express.static(path.join(__dirname, '/node_modules/angular-ui-router/release')));
 
 /** 5. Use the router for requests to the api */
+app.use('/admin', Router);
 app.use('/api/posts', Router);
 
 /** 6. Go to homepage for route specified */

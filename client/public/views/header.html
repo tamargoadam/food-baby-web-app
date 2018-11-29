@@ -1,6 +1,8 @@
 <div class="sidenav" ng-controller="NavigationController">
     <img src="../css/FoodBabyLogo.png" id="logo">
-    <a href="#!/directory">Directory</a>
-    <a href="#!/locations">Locations</a>
-    <a href="#!/addFood">Add Food</a>
+    <a ng-hide="isLoggedIn()" href="#!/directory">Directory</a>
+    <a ng-hide="isLoggedIn()" href="#!/locations">Locations</a>
+    <a ng-hide="isLoggedIn()" href="#!/addFood">Add Food</a>
+    <a ng-hide="isLoggedIn()" class="signIn" href="#!/signIn">Sign in</a>
+    <a ng-show="isLoggedIn()" href="" ng-click="logOut()">Log Out</a>
 </div>

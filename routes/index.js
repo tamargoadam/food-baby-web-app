@@ -7,6 +7,27 @@ const router = express.Router(); // encapsulate all of our Routes
 let Post = require('../models/postsModel.js');
 
 /** Routing requests */
+router.route('/admin').get((req, res) => {
+  /* Retreive all the directory posts from the DB  */
+  var newpost = []; //the new array with only events that are currently active
+
+  //query into the postsModel DB, using the find query
+  Post.find((err, posts) => {
+    if (err) {
+      // debug(err);
+      console.log(err);
+      res.status(404).send(err);
+    }
+    var count = posts.length;
+    for (var i = 0; i < count; i++) {
+      newpost.push(posts[i]);
+    }
+    /* This sends the result of what was retrieved from DB, and sends it 
+     * back to the client in JSON */
+    res.json(newpost);
+  });
+});
+
 router.route('/').get((req, res) => {
   /* Retreive all the directory posts from the DB  */
   var newpost = []; //the new array with only events that are currently active
@@ -58,6 +79,7 @@ router.route('/').post((req, res) => {
   req.body.timefrom = tempTimeFrom.substring(11, 16);
   req.body.timeto = tempTimeTo.substring(11, 16);
 
+  /* Create a new object of the Post DB and then we will save it to the DB */
   var post = new Post(req.body); // creates a new post object
   // send the post object into the DB aka save it
   post.save((err) => {
@@ -70,10 +92,44 @@ router.route('/').post((req, res) => {
   })
 });
 
-//??? this might need to be fixed
-router.route('/:postId').get((req, res) => {
-  // send back the listing as json from the request
-  res.json(req.post);
+router.route('/:postId').delete((req, res) => {
+  console.log("deleted");
+  /* Deletes the specific postId listing from Database using the remove feature */
+  var listing = req.listing;
+  listing.remove(function(err){
+    if(err) {
+      console.log(err);
+      res.status(404).send(err);
+    } else {
+      res.end(); //this allows us to end without dealing with data afterwards
+    }
+  });
+});
+
+router.route('/:postId').put((req, res) => {
+  var listing = req.listing;
+  listing.voting = listing.voting + 1;
+  listing.save(function(err) {
+    if(err) {
+      console.log(err);
+      res.status(404).send(err);
+    } else {
+      res.json(listing);
+    }
+  });
+});
+
+
+router.param('postId', (req, res, next, id) => {
+  /* Uses the Post DB and finds the specific json object in the DB according the id */
+  Post.findById(id).exec(function(err, listing) {
+    if(err) {
+      res.status(404).send(err);
+    } else {
+      req.listing = listing;
+      next();
+    }
+  });
 });
 
 

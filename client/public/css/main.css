@@ -154,7 +154,6 @@ table#dirtable th {
 	cursor: pointer;
 } */
 
-/* For the card-columns */
 @media (min-width: 36em) {
     .card-columns {
         -webkit-column-count: 2;
@@ -177,4 +176,60 @@ table#dirtable th {
         -moz-column-count: 4;
         column-count: 4;
     }
+}
+
+
+
+/* Sign in Section (Aka admin section) */
+.signIn{
+	width: 160px;
+	position: absolute;
+	bottom: 5%;
+}
+
+.form-signin{
+	border: solid 1px var(--dark-primary-color);
+	width: 50%;
+	height: 400px;
+}
+
+.form-signin div{
+	padding: 10px;
+}
+.form-signin div h5{
+	padding-top: 10px;
+	
+}
+.form-signin button{
+	margin: 5%;
+	width: 90%;
+}
+
+.x-delete{
+	padding-left: 10px;
+}
+.x-delete:hover{
+	opacity: .50;
+	cursor: pointer;
+}
+
+/* Thumbs up portion - Tallying */
+.thumbsUp{
+	position: absolute;
+	right: 5px;
+	/* top: 5px; */
+}
+.thumbsUp:hover{
+	opacity: .80;
+	cursor: pointer;
+}
+.tally-box{
+	position: absolute;
+	right: 50px;
+	width: 10px;
+	height: 30px;
+	/* background-color: grey; */
+}	
+.tally-box span{
+	color: grey;
 }

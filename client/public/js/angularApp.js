@@ -14,7 +14,7 @@ myFoodBaby.config(['$routeProvider', ($routeProvider) => {
     .when('/addFood', {
       templateUrl: 'views/templates/addFood.html'
     }).otherwise({
-      // if any other page then redirect to 
+      // if any other page then redirect to
       redirectTo: '/directory'
     });
 }]);
@@ -24,12 +24,12 @@ myFoodBaby.factory('Posts', ['$http', ($http) => {
   /* Different factory methods created by using the $http dependency */
   var o = {
     getData: function () {
-      return $http.get('https://food-baby-web-app.herokuapp.com/api/posts');
-      // return $http.get('http://localhost:4000/api/posts');
+      //return $http.get('https://food-baby-web-app.herokuapp.com/api/posts');
+      return $http.get('http://localhost:4000/api/posts');
     },
     createPost: function (post) {
-      return $http.post('https://food-baby-web-app.herokuapp.com/api/posts', post);
-      // return $http.post('http://localhost:4000/api/posts', post);
+      //return $http.post('https://food-baby-web-app.herokuapp.com/api/posts', post);
+      return $http.post('http://localhost:4000/api/posts', post);
     }
   };
   return o;
@@ -63,6 +63,22 @@ myFoodBaby.controller('FoodFormController', ['$scope', 'Posts', ($scope, Posts) 
   $scope.date = todayDate;
   $scope.year = yyyy;
 
+  //Use geocoder to add latitude and longitude to post
+  var geocoder = new google.maps.Geocoder();
+  var addCoordinates = function () {
+    geocoder.geocode({ 'address': $scope.address },
+    function (results, status)
+    {
+      if (status == google.maps.GeocoderStatus.OK) {
+        $scope.coordinates.latitude = results[0].geometry.location.lat();
+        $scope.coordinates.longitude = results[0].geometry.location.lng();
+      }
+    });
+  };
+  if($scope.address != undefined){
+    addCoordinates();
+  }
+
 }]);
 
 /* 5. Controller for the directory of free food */
@@ -79,6 +95,7 @@ myFoodBaby.controller('DirectoryController', ['$scope', 'Posts', ($scope, Posts)
     });
   }
   getAllData(); //calls this function to initialize list with the data
+
 
   // $scope.deleteFood = function (food) {
   //   var deletedFood = $scope.foods.indexOf(food);

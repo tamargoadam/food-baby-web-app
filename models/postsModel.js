@@ -3,18 +3,18 @@ const mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
   organization: {
-    type: String, 
-    description: "Must be a string and is required", 
+    type: String,
+    description: "Must be a string and is required",
     required: true
-  }, 
+  },
   eventname: {
     type: String,
-    description: "Must be a string and is required", 
+    description: "Must be a string and is required",
     required: true
-  }, 
+  },
   typeoffood: {
     type: String,
-    description: "Must be a string (pick from dropdown menu) and is required", 
+    description: "Must be a string (pick from dropdown menu) and is required",
     required: true
   },
   vegetarian:{
@@ -26,6 +26,16 @@ var schema = new mongoose.Schema({
   building: {
     type: String,
     description: "Must be a string and is required"
+  },
+  coordinates: {
+    lat: {
+      type: Number,
+      required: true
+    },
+    long: {
+      type: Number,
+      required: true
+    }
   },
   address: {
     type: String,
@@ -52,7 +62,7 @@ var schema = new mongoose.Schema({
     required: true
   },
   timefrom: {
-    type: String, 
+    type: String,
     description: "must be a time and be less than timeTo and is required",
     required: true
   },
@@ -60,7 +70,7 @@ var schema = new mongoose.Schema({
     type: String,
     description: "must be a time and be greater than timeFrom and is required",
     required: true
-  }, 
+  },
   voting: {
     type: Number
   }

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <ng-controller ng-controller="DirectoryController"> </ng-controller>
   <head>
-    <title>Simple Map</title>
+    <title>Map of Free Food</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
     <style>
@@ -18,13 +17,17 @@
         padding: 0;
       }
     </style>
-    </script>
   </head>
   <body>
+  <div ng-controller="DirectoryController">
     <div id="map">
-      <marker ng-repeat="food in foods" ng-click="showDetails(food)">
-
-       </marker>
+      <custom-marker ng-repeat="food in foods"
+      ng-click="showDetails(food)"
+      position = {{food.coordinates}}>
+        <div>
+          {{food.voting}}
+        </div>
+       </custom-marker>
     </div>
     <script id ="mapScript">
       var map;
@@ -73,5 +76,6 @@
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh-MmFRXG5EfNFillIGcOrqKWT41NfeX4&callback=initMap"
     async defer></script>
+    </div>
   </body>
 </html>

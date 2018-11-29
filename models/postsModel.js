@@ -27,6 +27,16 @@ var schema = new mongoose.Schema({
     type: String,
     description: "Must be a string and is required"
   },
+  coordinates: {
+    lat: {
+      type: Number,
+      required: true
+    },
+    long: {
+      type: Number,
+      required: true
+    }
+  },
   address: {
     type: String,
     required: true,

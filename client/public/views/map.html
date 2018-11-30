@@ -1,81 +1,75 @@
+<!-- mapbox api -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Map of Free Food</title>
-    <meta name="viewport" content="initial-scale=1.0">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-  <div ng-controller="DirectoryController">
-    <div id="map">
-      <custom-marker ng-repeat="food in foods"
-      ng-click="showDetails(food)"
-      position = {{food.coordinates}}>
-        <div>
-          {{food.voting}}
-        </div>
-       </custom-marker>
-    </div>
-    <script id ="mapScript">
-      var map;
+
+<head>
+	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
+	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		#map {
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<div id='map'>
+	</div>
+	<script>
+		var map;
+      var geocoder;
+      var infoWindow;
+      var posts;
       
-      function initMap(objs) {
+      function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 29.642, lng: -82.355},
-          zoom: 14
+          center: {lat: 29.6463, lng: -82.3478},
+          zoom: 15
         });
-        var geocoder = new google.maps.Geocoder();
-        var objs = $.getJSON('example.json', function(data) {
-          alert(data);
-        });
-        //var addy = "2777 SW Archer Road";
-        //geocodeAddy(addy, map);
+
+        geocoder = new google.maps.Geocoder();
+        $.getJSON(window.location.origin + "/api/posts", function(posts) {
+  		    for (var i in posts ){
+  		    	generatePin(geocoder, map, posts[i]);
+  		    }
+		    });
+        map.setCenter({lat: 29.6463, lng: 82.3478});
       }
-      /*function geocodeAddy(addy,map) {
-        geocoder.geocode({address: addy}, function(res,status) {
-        if(status === 'OK') {
-          map.setCenter(res[0].geometry.location);
-          var marker = new google.maps.Marker({
-            map: map,
-            position: res[0].geometry.location
-          });
-        } else {
-          alert("Failed to load marker due to " + status);
-        }
-        });
-      } */
-      /*function geocodeAddress(map) {
-      var address = "330 Newel Dr";
-          //var population = $('[ng-controller="ListingsController"]').scope().populate;
-        population = JSON.parse(populate);
-        geocoder.geocode({address: address}, function(result, status) {
-          if(status === 'OK') {
-            resultsMap.setCenter(result[0].geometry.location);
+      function generatePin(geocoder, map, event) {
+        geocoder.geocode({'address': event.address}, function(results, status) {
+          if (status === 'OK') {
+            map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
               map: map,
-              position: result[0].geometry.location
+              position: results[0].geometry.location
             });
+
+            marker.addListener('click', function() {
+              if (infoWindow) {
+                infoWindow.close();
+              }
+              infoWindow = new google.maps.InfoWindow;
+  	        	infoWindow.setPosition(marker.getPosition());
+  	        	infoWindow.setContent(event.name + "<br>" + event.address);
+  	        	infoWindow.open(map, marker);
+              map.setCenter(marker.getPosition());
+	         });
           } else {
-            alert('Failed to load markers');
+            alert('Geocode was not successful for the following reason: ' + status);
           }
         });
-      }*/
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh-MmFRXG5EfNFillIGcOrqKWT41NfeX4&callback=initMap"
+      }
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh-MmFRXG5EfNFillIGcOrqKWT41NfeX4&callback=initMap"
     async defer></script>
-    </div>
-  </body>
+</body>
+
 </html>

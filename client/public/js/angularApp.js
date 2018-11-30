@@ -35,19 +35,19 @@ myFoodBaby.factory('Posts', ['$http', ($http) => {
     },
     createPost: function (post) {
       return $http.post('https://food-baby-web-app.herokuapp.com/api/posts', post);
-      // return $http.post('http://localhost:4000/api/posts', post);
+       // return $http.post('http://localhost:4000/api/posts', post);
     },
     adminGetData: function () {
       return $http.get('https://food-baby-web-app.herokuapp.com/api/posts');
-      // return $http.get('http://localhost:4000/admin');
+       // return $http.get('http://localhost:4000/admin');
     },
     deletePost: function (id) {
       return $http.delete('https://food-baby-web-app.herokuapp.com/api/posts/' + id);
-      // return $http.delete('http://localhost:4000/api/posts/' + id);
+       // return $http.delete('http://localhost:4000/api/posts/' + id);
     },
     updateVote: function (id) {
       return $http.put('https://food-baby-web-app.herokuapp.com/api/posts/' + id);
-      // return $http.put('http://localhost:4000/api/posts/' + id);
+       // return $http.put('http://localhost:4000/api/posts/' + id);
     }
   };
   return o;
@@ -61,6 +61,7 @@ myFoodBaby.controller('FoodFormController', ['$scope', 'Posts', ($scope, Posts) 
     $scope.newfood.voting = 0;
     Posts.createPost($scope.newfood).then(() => {
       console.log("Creating a new post");
+      alert("Congratulations! Your form has been submitted!");
       // First we get all the posts in the DB by the factory method getData()
       Posts.getData().then((responseData) => {
         $scope.foods = responseData.data;

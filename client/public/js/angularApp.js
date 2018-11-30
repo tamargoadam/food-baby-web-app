@@ -35,33 +35,35 @@ myFoodBaby.factory('Posts', ['$http', ($http) => {
     },
     createPost: function (post) {
       return $http.post('https://food-baby-web-app.herokuapp.com/api/posts', post);
-       // return $http.post('http://localhost:4000/api/posts', post);
+      //  return $http.post('http://localhost:4000/api/posts', post);
     },
     adminGetData: function () {
       return $http.get('https://food-baby-web-app.herokuapp.com/api/posts');
-       // return $http.get('http://localhost:4000/admin');
+      //  return $http.get('http://localhost:4000/admin');
     },
     deletePost: function (id) {
       return $http.delete('https://food-baby-web-app.herokuapp.com/api/posts/' + id);
-       // return $http.delete('http://localhost:4000/api/posts/' + id);
+      //  return $http.delete('http://localhost:4000/api/posts/' + id);
     },
     updateVote: function (id) {
       return $http.put('https://food-baby-web-app.herokuapp.com/api/posts/' + id);
-       // return $http.put('http://localhost:4000/api/posts/' + id);
+      //  return $http.put('http://localhost:4000/api/posts/' + id);
     }
-  };
+  }; 
   return o;
 }]);
 
 /* 4. Controller for the Food Form */
 myFoodBaby.controller('FoodFormController', ['$scope', 'Posts', ($scope, Posts) => {
+  $scope.submitMsg = "Congratulations! Your form has been submitted!";
+  var isSuccess = false;
+
   function addFoodFunc() {
     // Uses the factory method to create a new post with the associated information from the $scope object newfood
     // $scope.newfood contains submitted information in an array
     $scope.newfood.voting = 0;
     Posts.createPost($scope.newfood).then(() => {
-      console.log("Creating a new post");
-      alert("Congratulations! Your form has been submitted!");
+      isSuccess = true;
       // First we get all the posts in the DB by the factory method getData()
       Posts.getData().then((responseData) => {
         $scope.foods = responseData.data;
@@ -82,6 +84,10 @@ myFoodBaby.controller('FoodFormController', ['$scope', 'Posts', ($scope, Posts) 
   var todayDate = yyyy + '-' + mm + '-' + dd;
   $scope.date = todayDate;
   $scope.year = yyyy;
+
+  $scope.submitSuccess = function () {
+    return isSuccess;
+  }
 
 }]);
 

@@ -28,7 +28,7 @@
       var geocoder;
       var infoWindow;
       var posts;
-      
+
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 29.6463, lng: -82.3478},
@@ -36,15 +36,15 @@
         });
 
         geocoder = new google.maps.Geocoder();
-        $.getJSON(window.location.origin + "/api/posts", function(posts) {
+        $.getJSON("http://localhost:4000/api/posts", function(posts) {
   		    for (var i in posts ){
   		    	generatePin(geocoder, map, posts[i]);
   		    }
 		    });
         map.setCenter({lat: 29.6463, lng: 82.3478});
       }
-      function generatePin(geocoder, map, event) {
-        geocoder.geocode({'address': event.address}, function(results, status) {
+      function generatePin(geocoder, map, Posts) {
+        geocoder.geocode({'address': Posts.city + " " + Posts.address}, function(results, status) {
           if (status === 'OK') {
             map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
@@ -58,7 +58,7 @@
               }
               infoWindow = new google.maps.InfoWindow;
   	        	infoWindow.setPosition(marker.getPosition());
-  	        	infoWindow.setContent(event.name + "<br>" + event.address);
+  	        	infoWindow.setContent(Posts.eventname + "<br>" + Posts.address);
   	        	infoWindow.open(map, marker);
               map.setCenter(marker.getPosition());
 	         });
@@ -70,6 +70,7 @@
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh-MmFRXG5EfNFillIGcOrqKWT41NfeX4&callback=initMap"
     async defer></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </body>
 
 </html>

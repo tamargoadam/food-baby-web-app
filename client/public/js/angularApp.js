@@ -19,10 +19,6 @@ myFoodBaby.config(['$routeProvider', ($routeProvider) => {
     })
     .when('/adminPage', {
       templateUrl: 'views/templates/adminPage.html',
-      // checks if the user has permission to access this route
-      access: {
-        isFree: false
-      }
     }).otherwise({
       // if any other page then redirect to 
       redirectTo: '/directory'

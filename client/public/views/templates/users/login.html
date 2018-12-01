@@ -1,0 +1,34 @@
+<div class="container">
+  <h1 class="main-title">User Login</h1>
+
+
+  <form ng-submit="main.doLogin(loginData);">
+    <!-- Username -->
+    <label>Username:</label>
+    <input class="form-control" type="text" name="username" placeholder="please enter username" ng-model="main.loginData.username">
+    <br>
+    <!-- Password -->
+    <label>Password:</label>
+    <input class="form-control" type="password" name="password" placeholder="please enter password" ng-model="main.loginData.password">
+    <br>
+    <button class="btn btn-primary" type="submit">Login</button>&nbsp;
+    <a href="/auth/facebook" target="_blank"><button type="button" class="btn btn-success">Facebook</button></a>
+  </form>
+
+  <br>
+  <!-- Loading Icon (Bootstrap) -->
+  <div class="jumbotron text-center" ng-show="main.loading">
+    <span class="glyphicon glyphicon-repeat spinner"></span>
+    <p>Loading....</p>
+  </div>
+
+  <!-- Custom Messages -->
+  <div class="row show-hide-message" ng-show="main.successMsg">
+    <div class="alert alert-success">{{ main.successMsg }}</div>
+  </div>
+
+  <div class="row show-hide-message" ng-show="main.errorMsg">
+    <div class="alert alert-danger">{{ main.errorMsg }}</div>
+  </div>
+
+</div>

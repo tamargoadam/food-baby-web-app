@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html ng-app="myFoodBaby">
+<html ng-app="myFoodBaby" ng-controller="mainCtrl as main">
 
 <head>
+  <base href="/">
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Food Baby</title>
@@ -15,7 +16,7 @@
 
 </head>
 
-<body>
+<body ng-show="main.loadme" ng-cloak>
   <header ng-include="'views/header.html'"></header>
   <main class="main" ng-view></main>
   <!-- JavaScript Files -->
@@ -24,6 +25,13 @@
   <script src="js/angular-route.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/angularApp.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/controllers/postCtrl.js"></script>
+  <script src="js/controllers/userCtrl.js"></script>
+  <script src="js/controllers/mainCtrl.js"></script>
+  <script src="js/factories/postsServ.js"></script>
+  <script src="js/factories/userServ.js"></script>
+  <script src="js/factories/authServ.js"></script>
 </body>
 
 </html>

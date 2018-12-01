@@ -32,6 +32,7 @@ body {
 
 /* Title */
 .sidenav h1 {
+	font-size: 24px;
 	padding: 6px 8px 6px 16px;
 	color: var(--secondary-text-color);
 	background-color: var(--dark-primary-color);
@@ -233,4 +234,21 @@ table#dirtable th {
 }	
 .tally-box span{
 	color: grey;
+}
+
+/* Home Page */
+
+.homeImage{
+	height: 50%;
+	width: 50%;
+	align-content: center;
+	position: relative;
+	left: 20%;
+}
+
+/* Profile Page */
+.panel-heading{
+	margin-bottom: 10px;
+	text-align: center;
+	/* font-family: 'Nothing You Could Do', cursive; */
 }

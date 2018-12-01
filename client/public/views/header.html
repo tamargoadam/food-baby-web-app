@@ -1,8 +1,17 @@
-<div class="sidenav" ng-controller="NavigationController">
+<!--  ng-controller="NavigationController" -->
+<div class="sidenav"> 
     <img src="../css/FoodBabyLogo.png" id="logo">
-    <a ng-hide="isLoggedIn()" href="#!/directory">Directory</a>
-    <a ng-hide="isLoggedIn()" href="#!/locations">Locations</a>
-    <a ng-hide="isLoggedIn()" href="#!/addFood">Add Food</a>
-    <a ng-hide="isLoggedIn()" class="signIn" href="#!/signIn">Sign in</a>
-    <a ng-show="isLoggedIn()" href="" ng-click="logOut()">Log Out</a>
+    <a href="/">Home</a>
+    <a ng-show="main.isLoggedIn" href="/directory">Directory</a>
+    <a ng-show="main.isLoggedIn" href="/locations">Locations</a>
+    <a ng-show="main.isLoggedIn" href="/addFood">Add Food</a>
+    <a href="/foodOnCampus">UF Food</a>
+    <br>
+    <a ng-hide="main.isLoggedIn" href="/register">Register</a>
+    <a ng-hide="main.isLoggedIn" href="/login">Login</a>
+
+    <a ng-show="main.isLoggedIn" href="/profile">User Profile</a>
+    <a ng-show="main.isLoggedIn" href="#" ng-click="main.logout();">Logout</a>
+    <!-- <a ng-hide="isLoggedIn()" class="signIn" href="/signIn">Sign in</a>
+    <a ng-show="isLoggedIn()" href="" ng-click="logOut()">Log Out</a> -->
 </div>

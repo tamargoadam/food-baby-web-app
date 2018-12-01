@@ -1,10 +1,8 @@
-<!-- mapbox api -->
+<!-- googlemaps api -->
 <!DOCTYPE html>
 <html>
 
 <head>
-	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
-	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
 	<style>
 		body {
 			margin: 0;
@@ -36,7 +34,7 @@
         });
 
         geocoder = new google.maps.Geocoder();
-        $.getJSON("http://localhost:4000/api/posts", function(posts) {
+        $.getJSON("https://food-baby-web-app.herokuapp.com/api/posts", function(posts) {
   		    for (var i in posts ){
   		    	generatePin(geocoder, map, posts[i]);
   		    }

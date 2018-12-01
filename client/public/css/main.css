@@ -179,6 +179,22 @@ table#dirtable th {
     }
 }
 
+@media (min-width: 75em) {
+    .card-columns {
+        -webkit-column-count: 5;
+        -moz-column-count: 5;
+        column-count: 5;
+    }
+}
+
+@media (min-width: 88em) {
+    .card-columns {
+        -webkit-column-count: 6;
+        -moz-column-count: 6;
+        column-count: 6;
+    }
+}
+
 
 
 /* Sign in Section (Aka admin section) */

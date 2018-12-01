@@ -10,7 +10,7 @@ postServ.factory('Posts', ['$http', ($http) => {
     getData: function () {
       // return $http.get('https://food-baby-web-app.herokuapp.com/api/posts');
       return $http.get('api/posts');
-    },
+    }, 
     createPost: function (post) {
       // return $http.post('https://food-baby-web-app.herokuapp.com/api/posts', post);
       return $http.post('/api/posts', post);

@@ -37,7 +37,8 @@ myRoutes.config(['$routeProvider', '$locationProvider', ($routeProvider, $locati
         })
         // map page
         .when('/locations', {
-            templateUrl: 'views/templates/locations.html'
+            templateUrl: 'views/templates/locations.html',
+            controller: "MapCtrl"
         })
         // add food form
         .when('/addFood', {

@@ -26,7 +26,7 @@ body {
 	padding-top: 20px
 }
 
-.main-title{
+.main-title {
 	font-family: 'Nothing You Could Do', cursive;
 }
 
@@ -38,7 +38,7 @@ body {
 	background-color: var(--dark-primary-color);
 }
 
-#logo{
+#logo {
 	height: 115px;
 	width: auto;
 	margin-bottom: 25px;
@@ -69,128 +69,134 @@ body {
 	padding-left: 15px;
 }
 
-.container{
+.container {
 	margin-left: 20px;
 }
 
 /* Form */
-.form-indent{
+.form-indent {
 	padding-left: 15px;
 }
 
-.card-img-top{
+.card-img-top {
 	opacity: 1.0;
 }
 
-.card-img-top:hover{
+.card-img-top:hover {
 	opacity: 0.5;
 	cursor: pointer;
 }
 
 .card:hover .showme {
-	display:block;
+	display: block;
 }
 
 @media (min-width: 36em) {
-    .card-columns {
-        -webkit-column-count: 2;
-        -moz-column-count: 2;
-        column-count: 2;
-    }
+	.card-columns {
+		-webkit-column-count: 2;
+		-moz-column-count: 2;
+		column-count: 2;
+	}
 }
 
 @media (min-width: 47em) {
-    .card-columns {
-        -webkit-column-count: 3;
-        -moz-column-count: 3;
-        column-count: 3;
-    }
+	.card-columns {
+		-webkit-column-count: 3;
+		-moz-column-count: 3;
+		column-count: 3;
+	}
 }
 
 @media (min-width: 63em) {
-    .card-columns {
-        -webkit-column-count: 4;
-        -moz-column-count: 4;
-        column-count: 4;
-    }
+	.card-columns {
+		-webkit-column-count: 4;
+		-moz-column-count: 4;
+		column-count: 4;
+	}
 }
 
 @media (min-width: 75em) {
-    .card-columns {
-        -webkit-column-count: 5;
-        -moz-column-count: 5;
-        column-count: 5;
-    }
+	.card-columns {
+		-webkit-column-count: 5;
+		-moz-column-count: 5;
+		column-count: 5;
+	}
 }
 
 @media (min-width: 88em) {
-    .card-columns {
-        -webkit-column-count: 6;
-        -moz-column-count: 6;
-        column-count: 6;
-    }
+	.card-columns {
+		-webkit-column-count: 6;
+		-moz-column-count: 6;
+		column-count: 6;
+	}
 }
 
 
 
 /* Sign in Section (Aka admin section) */
-.signIn{
+.signIn {
 	width: 160px;
 	position: absolute;
 	bottom: 5%;
 }
 
-.form-signin{
+.form-signin {
 	border: solid 1px var(--dark-primary-color);
 	width: 50%;
 	height: 400px;
 }
 
-.form-signin div{
+.form-signin div {
 	padding: 10px;
 }
-.form-signin div h5{
+
+.form-signin div h5 {
 	padding-top: 10px;
-	
+
 }
-.form-signin button{
+
+.form-signin button {
 	margin: 5%;
 	width: 90%;
 }
 
-.x-delete{
+.x-delete {
 	padding-left: 10px;
 }
-.x-delete:hover{
+
+.x-delete:hover {
 	opacity: .50;
 	cursor: pointer;
 }
 
 /* Thumbs up portion - Tallying */
-.thumbsUp{
+.thumbsUp {
 	position: absolute;
 	right: 5px;
 	/* top: 5px; */
 }
-.thumbsUp:hover{
+
+.thumbsUp:hover {
 	opacity: .80;
 	cursor: pointer;
 }
-.tally-box{
+
+.tally-box {
 	position: absolute;
 	right: 50px;
 	width: 20px;
 	height: 30px;
 	text-align: right;
 	/* background-color: grey; */
-}	
-.tally-box span{
+}
+
+.tally-box span {
 	color: grey;
 }
 
 /* Home Page */
 
-.homeImage{
+.homeImage {
 	height: 50%;
 	width: 50%;
 	align-content: center;
@@ -199,8 +205,17 @@ body {
 }
 
 /* Profile Page */
-.panel-heading{
+.panel-heading {
 	margin-bottom: 10px;
 	text-align: center;
 	/* font-family: 'Nothing You Could Do', cursive; */
+}
+
+/* Map */
+#map {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	box-shadow: 3px 3px 10px gray;
 }

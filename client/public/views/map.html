@@ -30,11 +30,11 @@
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 29.6463, lng: -82.3478},
-          zoom: 15
+          zoom: 14
         });
 
         geocoder = new google.maps.Geocoder();
-        $.getJSON("https://food-baby-web-app.herokuapp.com/api/posts", function(posts) {
+        $.getJSON("http://localhost:4000/api/posts", function(posts) {
   		    for (var i in posts ){
   		    	generatePin(geocoder, map, posts[i]);
   		    }
@@ -44,10 +44,10 @@
       function generatePin(geocoder, map, Posts) {
         geocoder.geocode({'address': Posts.city + " " + Posts.address}, function(results, status) {
           if (status === 'OK') {
-            map.setCenter(results[0].geometry.location);
             var marker = new google.maps.Marker({
               map: map,
-              position: results[0].geometry.location
+              position: results[0].geometry.location,
+	      label: Posts.voting
             });
 
             marker.addListener('click', function() {
@@ -56,7 +56,7 @@
               }
               infoWindow = new google.maps.InfoWindow;
   	        	infoWindow.setPosition(marker.getPosition());
-  	        	infoWindow.setContent(Posts.eventname + "<br>" + Posts.address);
+  	        	infoWindow.setContent(Posts.eventname + "<br>" + Posts.address + "<br>" + Posts.timefrom + "-" Posts.timeto);
   	        	infoWindow.open(map, marker);
               map.setCenter(marker.getPosition());
 	         });

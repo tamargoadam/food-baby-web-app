@@ -1,267 +1,257 @@
 <div class="container">
-  <div class="row">
-    <h1 class="main-title">Upcoming Events</h1>
-    <br>
+    <div class="row">
+      <h1 class="main-title">Upcoming Events</h1>
+      <br>
+    </div>
+    <form>
+      <div class="form-group row">
+        <div class="col-md-1">
+          <strong>Search:</strong>
+        </div>
+        <div class="col-md-6">
+          <input type="text" class="form-control" ng-model="search">
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-1">
+          <strong>Filter:</strong>
+        </div>
+        <div class="col-md-3">
+            <input type="date" class="form-control" required ng-model="dateFrom">
+        </div>
+        -
+        <div class="col-md-3">
+            <input type="date" class="form-control" required ng-model="dateTo">
+        </div>
+      </div>
+      <!-- need to add filter features -->
+    </form>
+    <br />
+  
+    <!-- Listings on repeat below from Database -->
+    <div class="card-columns">
+      <div class="card" ng-repeat="food in foods | filter: search | dateFilter:dateFrom:dateTo" ng-click="showDetails(food)">
+        <ng-template ng-if="food.typeoffood=='Pizza'">
+          <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj_spv-z9HeAhXoRt8KHTjLCLAQjRx6BAgBEAU&url=https%3A%2F%2Fwww.123rf.com%2Fstock-photo%2Fitalian_pizza.html&psig=AOvVaw2Aw44gpa2Y-rd3SUhU9MNt&ust=1542207283391949 -->
+          <img class="card-img-top img-responsive" src="../../assets/pizza.jpg" alt="Card image cap" data-toggle="modal"
+            data-target="#foodModal" ng-click="moreInfo(food)">
+          <!-- image credit: Narda Yescas (Pexels.com)-->
+        </ng-template>
+        <ng-template ng-if="food.typeoffood=='Sweets'">
+          <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjatqH10NHeAhWNUt8KHchKAm4QjRx6BAgBEAU&url=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Fsweet&psig=AOvVaw0crQ8ODqxXfPBQHeRIpamw&ust=1542207528896899 -->
+          <img class="card-img-top" src="../../assets/sweets.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
+            ng-click="moreInfo(food)">
+          <!-- image credit: Julio Melanda (Pexels.com)-->
+        </ng-template>
+        <ng-template ng-if="food.typeoffood=='Subway'">
+          <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwix8faR0dHeAhWic98KHd5pD7YQjRx6BAgBEAU&url=https%3A%2F%2Fwww.subway.com%2Fen-US&psig=AOvVaw3NI1y11XUH6_oWNRTqGRbB&ust=1542207596271951 -->
+          <img class="card-img-top" src="../../assets/sub.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
+            ng-click="moreInfo(food)">
+          <!-- image credit: Rajesh TP (Pexels.com)-->
+        </ng-template>
+        <ng-template ng-if="food.typeoffood=='Chipotle'">
+          <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjqhoi-0tHeAhUEneAKHbVHCsEQjRx6BAgBEAU&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FChipotle_Mexican_Grill&psig=AOvVaw1M8oTwV0oUS0ZISu2rCp9D&ust=1542207952188814 -->
+          <img class="card-img-top img-responsive" src="../../assets/chipotle.jpg" alt="Card image cap" data-toggle="modal"
+            data-target="#foodModal" ng-click="moreInfo(food)">
+          <!-- image credit: Pixabay (Pexels.com)-->
+        </ng-template>
+        <ng-template ng-if="food.typeoffood=='Panera Bread'">
+          <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjR4Y_S0tHeAhVJmeAKHdEHBFQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.whig.com%2F20170616%2Fnew-panera-bread-building-will-have-drive-through-lane&psig=AOvVaw1tCln2t5A5y8oaUtyuyDeU&ust=1542207997104817 -->
+          <img class="card-img-top" src="../../assets/panera.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
+            ng-click="moreInfo(food)">
+          <!-- image credit: Steyn Viljoen (Pexels.com)-->
+        </ng-template>
+        <ng-template ng-if="food.typeoffood=='Chick-fil-a'">
+          <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjA0enm0tHeAhXtRt8KHYITDOIQjRx6BAgBEAU&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFile%3AChick-fil-A_Logo.svg&psig=AOvVaw1_dPETk5h-8ePm-dxdkrZU&ust=1542208040225159 -->
+          <img class="card-img-top" src="../../assets/chicken.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
+            ng-click="moreInfo(food)">
+          <!-- image credit: Valeria Boltneva (Pexels.com)-->
+        </ng-template>
+        <ng-template ng-if="food.typeoffood=='Burgers'">
+          <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjsko790tHeAhUqneAKHZZrCnEQjRx6BAgBEAU&url=https%3A%2F%2Fstockfresh.com%2Froyalty-free-stock-photos%2Fburgers&psig=AOvVaw37SWwOAkNFlIl5uE1SwcVE&ust=1542208078338533 -->
+          <img class="card-img-top" src="../../assets/burger.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
+            ng-click="moreInfo(food)">
+          <!-- image credit: Dana Tentis (Pexels.com)-->
+        </ng-template>
+        <ng-template ng-if="food.typeoffood=='Chinese Food'">
+          <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiB8OXv1dHeAhXtmOAKHdqEBzgQjRx6BAgBEAU&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fchinese%2520food%2F&psig=AOvVaw2v9a_m6aZIvB8k2Uw99p_Y&ust=1542208833109376 -->
+          <img class="card-img-top" src="../../assets/chinese.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
+            ng-click="moreInfo(food)">
+          <!-- image credit: Buenosia Carol (Pexels.com)-->
+        </ng-template>
+        <ng-template ng-if="food.typeoffood=='Fast Food'">
+          <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwigpvua1tHeAhXKct8KHdDyAi0QjRx6BAgBEAU&url=https%3A%2F%2Fdepositphotos.com%2Fvector-images%2Ffast-food.html&psig=AOvVaw0NqGQZIEFH6OECzwaEj-fu&ust=1542208895687072 -->
+          <img class="card-img-top" src="../../assets/fast.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
+            ng-click="moreInfo(food)">
+          <!-- image credit: Robin Stickel (Pexels.com)-->
+        </ng-template>
+        <ng-template ng-if="food.typeoffood=='Other'">
+          <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjeke7b1tHeAhVQmeAKHbiNBjwQjRx6BAgBEAU&url=http%3A%2F%2Fwww.other-themovie.com%2F&psig=AOvVaw0NMK8YgJUMqGiJiMFzKw2B&ust=1542209052557995 -->
+          <img class="card-img-top" src="../../assets/other.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
+            ng-click="moreInfo(food)">
+          <!-- image credit: Pixabay (Pexels.com)-->
+        </ng-template>
+  
+        <div class="card-body">
+          <!-- <div class="tally-box"><span>{{food.voting}}</span></div> -->
+          <!-- <button type="button" class="thumbsUp"><img ng-click="upVote($index)" src="../../assets/thumb-up-2x.png" /></button> -->
+          <h5 class="card-title">{{food.organization}}</h5>
+          <div class="form-group ">
+            <strong>Event Name: </strong>
+            {{food.eventname}}
+          </div>
+          <div class="form-group ">
+            <strong>Time: </strong>
+            {{food.timefrom}} - {{food.timeto}}
+          </div>
+          <div class="form-group ">
+            <strong>Date: </strong>
+            {{food.date}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="foodModal" tabindex="-1" role="dialog" aria-labelledby="foodModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="foodModalLabel">{{food.organization}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- {{food.organization}}
+            {{food.eventname}} -->
+            <ng-template ng-if="food.typeoffood=='Pizza'">
+              <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj_spv-z9HeAhXoRt8KHTjLCLAQjRx6BAgBEAU&url=https%3A%2F%2Fwww.123rf.com%2Fstock-photo%2Fitalian_pizza.html&psig=AOvVaw2Aw44gpa2Y-rd3SUhU9MNt&ust=1542207283391949 -->
+              <img class="card-img-top img-responsive" src="../../assets/pizza.jpg" alt="Card image cap">
+              <!-- image credit: Narda Yescas (Pexels.com)-->
+            </ng-template>
+            <ng-template ng-if="food.typeoffood=='Sweets'">
+              <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjatqH10NHeAhWNUt8KHchKAm4QjRx6BAgBEAU&url=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Fsweet&psig=AOvVaw0crQ8ODqxXfPBQHeRIpamw&ust=1542207528896899 -->
+              <img class="card-img-top" src="../../assets/sweets.jpg" alt="Card image cap">
+              <!-- image credit: Julio Melanda (Pexels.com)-->
+            </ng-template>
+            <ng-template ng-if="food.typeoffood=='Subway'">
+              <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwix8faR0dHeAhWic98KHd5pD7YQjRx6BAgBEAU&url=https%3A%2F%2Fwww.subway.com%2Fen-US&psig=AOvVaw3NI1y11XUH6_oWNRTqGRbB&ust=1542207596271951 -->
+              <img class="card-img-top" src="../../assets/sub.jpg" alt="Card image cap">
+              <!-- image credit: Rajesh TP (Pexels.com)-->
+            </ng-template>
+            <ng-template ng-if="food.typeoffood=='Chipotle'">
+              <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjqhoi-0tHeAhUEneAKHbVHCsEQjRx6BAgBEAU&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FChipotle_Mexican_Grill&psig=AOvVaw1M8oTwV0oUS0ZISu2rCp9D&ust=1542207952188814 -->
+              <img class="card-img-top img-responsive" src="../../assets/chipotle.jpg" alt="Card image cap">
+              <!-- image credit: Pixabay (Pexels.com)-->
+            </ng-template>
+            <ng-template ng-if="food.typeoffood=='Panera Bread'">
+              <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjR4Y_S0tHeAhVJmeAKHdEHBFQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.whig.com%2F20170616%2Fnew-panera-bread-building-will-have-drive-through-lane&psig=AOvVaw1tCln2t5A5y8oaUtyuyDeU&ust=1542207997104817 -->
+              <img class="card-img-top" src="../../assets/panera.jpg" alt="Card image cap">
+              <!-- image credit: Steyn Viljoen (Pexels.com)-->
+            </ng-template>
+            <ng-template ng-if="food.typeoffood=='Chick-fil-a'">
+              <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjA0enm0tHeAhXtRt8KHYITDOIQjRx6BAgBEAU&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFile%3AChick-fil-A_Logo.svg&psig=AOvVaw1_dPETk5h-8ePm-dxdkrZU&ust=1542208040225159 -->
+              <img class="card-img-top" src="../../assets/chicken.jpg" alt="Card image cap">
+              <!-- image credit: Valeria Boltneva (Pexels.com)-->
+            </ng-template>
+            <ng-template ng-if="food.typeoffood=='Burgers'">
+              <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjsko790tHeAhUqneAKHZZrCnEQjRx6BAgBEAU&url=https%3A%2F%2Fstockfresh.com%2Froyalty-free-stock-photos%2Fburgers&psig=AOvVaw37SWwOAkNFlIl5uE1SwcVE&ust=1542208078338533 -->
+              <img class="card-img-top" src="../../assets/burger.jpg" alt="Card image cap">
+              <!-- image credit: Dana Tentis (Pexels.com)-->
+            </ng-template>
+            <ng-template ng-if="food.typeoffood=='Chinese Food'">
+              <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiB8OXv1dHeAhXtmOAKHdqEBzgQjRx6BAgBEAU&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fchinese%2520food%2F&psig=AOvVaw2v9a_m6aZIvB8k2Uw99p_Y&ust=1542208833109376 -->
+              <img class="card-img-top" src="../../assets/chinese.jpg" alt="Card image cap">
+              <!-- image credit: Buenosia Carol (Pexels.com)-->
+            </ng-template>
+            <ng-template ng-if="food.typeoffood=='Fast Food'">
+              <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwigpvua1tHeAhXKct8KHdDyAi0QjRx6BAgBEAU&url=https%3A%2F%2Fdepositphotos.com%2Fvector-images%2Ffast-food.html&psig=AOvVaw0NqGQZIEFH6OECzwaEj-fu&ust=1542208895687072 -->
+              <img class="card-img-top" src="../../assets/fast.jpg" alt="Card image cap">
+              <!-- image credit: Robin Stickel (Pexels.com)-->
+            </ng-template>
+            <ng-template ng-if="food.typeoffood=='Other'">
+              <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjeke7b1tHeAhVQmeAKHbiNBjwQjRx6BAgBEAU&url=http%3A%2F%2Fwww.other-themovie.com%2F&psig=AOvVaw0NMK8YgJUMqGiJiMFzKw2B&ust=1542209052557995 -->
+              <img class="card-img-top" src="../../assets/other.jpg" alt="Card image cap">
+              <!-- image credit: Pixabay (Pexels.com)-->
+            </ng-template>
+            <!-- <div class="tally-box"><span>{{food.voting}}</span></div>
+            <button type="button" class="thumbsUp"><img ng-click="upVote($index)" src="../../assets/thumb-up-2x.png" /></button> -->
+            <div class="form-group row">
+              <div class="col-md-4">
+                <strong>Event Name: </strong>
+              </div>
+              <div class="col-md-8">
+                {{food.eventname}}
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-4">
+                <strong>Time: </strong>
+              </div>
+              <div class="col-md-8">
+                From {{food.timefrom}} to {{food.timeto}}
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-4">
+                <strong>Address: </strong>
+              </div>
+              <div class="col-md-8">
+                {{food.address}}, {{food.city}}, {{food.state}}, {{food.zipcode}}
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-4">
+                <strong>Type of Food: </strong>
+              </div>
+              <div class="col-md-8">
+                {{food.typeoffood}}
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-4">
+                <strong>Vegetarian Options: </strong>
+              </div>
+              <div class="col-md-8" ng-If="!food.vegetarian">
+                No
+              </div>
+              <div class="col-md-8" ng-If="food.vegetarian">
+                Yes
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-4">
+                <strong>Vegan Options: </strong>
+              </div>
+              <div class="col-md-8" ng-If="!food.vegan">
+                No
+              </div>
+              <div class="col-md-8" ng-If="food.vegan">
+                Yes
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-4">
+                <strong>Building: </strong>
+              </div>
+              <div class="col-md-8">
+                {{food.building}}
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-4">
+                <strong>Date: </strong>
+              </div>
+              <div class="col-md-8">
+                {{food.date}}
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
   </div>
-  <form>
-    <div class="form-group row">
-      <div class="col-md-1">
-        <strong>Search:</strong>
-      </div>
-      <div class="col-md-6">
-        <input type="text" class="form-control" ng-model="search">
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-md-1">
-        <strong>Filter:</strong>
-      </div>
-      <div class="col-md-3">
-          <input type="date" class="form-control" required ng-model="dateFrom">
-      </div>
-      -
-      <div class="col-md-3">
-          <input type="date" class="form-control" required ng-model="dateTo">
-      </div>
-    </div>
-    <!-- need to add filter features -->
-  </form>
-  <br />
-
-  <!-- Listings on repeat below from Database -->
-  <div class="card-columns">
-<<<<<<< HEAD
-    <!--  | filter: search -->
-    <div class="card" ng-repeat="food in foods">
-=======
-    <div class="card" ng-repeat="food in foods | filter: search | dateFilter:dateFrom:dateTo" ng-click="showDetails(food)">
->>>>>>> c2fdd6026cc9697069150cafd78cd5a30a9223cb
-      <ng-template ng-if="food.typeoffood=='Pizza'">
-        <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj_spv-z9HeAhXoRt8KHTjLCLAQjRx6BAgBEAU&url=https%3A%2F%2Fwww.123rf.com%2Fstock-photo%2Fitalian_pizza.html&psig=AOvVaw2Aw44gpa2Y-rd3SUhU9MNt&ust=1542207283391949 -->
-        <img class="card-img-top img-responsive" src="../../assets/pizza.jpg" alt="Card image cap" data-toggle="modal"
-          data-target="#foodModal" ng-click="moreInfo(food)">
-        <!-- image credit: Narda Yescas (Pexels.com)-->
-      </ng-template>
-      <ng-template ng-if="food.typeoffood=='Sweets'">
-        <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjatqH10NHeAhWNUt8KHchKAm4QjRx6BAgBEAU&url=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Fsweet&psig=AOvVaw0crQ8ODqxXfPBQHeRIpamw&ust=1542207528896899 -->
-        <img class="card-img-top" src="../../assets/sweets.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
-          ng-click="moreInfo(food)">
-        <!-- image credit: Julio Melanda (Pexels.com)-->
-      </ng-template>
-      <ng-template ng-if="food.typeoffood=='Subway'">
-        <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwix8faR0dHeAhWic98KHd5pD7YQjRx6BAgBEAU&url=https%3A%2F%2Fwww.subway.com%2Fen-US&psig=AOvVaw3NI1y11XUH6_oWNRTqGRbB&ust=1542207596271951 -->
-        <img class="card-img-top" src="../../assets/sub.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
-          ng-click="moreInfo(food)">
-        <!-- image credit: Rajesh TP (Pexels.com)-->
-      </ng-template>
-      <ng-template ng-if="food.typeoffood=='Chipotle'">
-        <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjqhoi-0tHeAhUEneAKHbVHCsEQjRx6BAgBEAU&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FChipotle_Mexican_Grill&psig=AOvVaw1M8oTwV0oUS0ZISu2rCp9D&ust=1542207952188814 -->
-        <img class="card-img-top img-responsive" src="../../assets/chipotle.jpg" alt="Card image cap" data-toggle="modal"
-          data-target="#foodModal" ng-click="moreInfo(food)">
-        <!-- image credit: Pixabay (Pexels.com)-->
-      </ng-template>
-      <ng-template ng-if="food.typeoffood=='Panera Bread'">
-        <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjR4Y_S0tHeAhVJmeAKHdEHBFQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.whig.com%2F20170616%2Fnew-panera-bread-building-will-have-drive-through-lane&psig=AOvVaw1tCln2t5A5y8oaUtyuyDeU&ust=1542207997104817 -->
-        <img class="card-img-top" src="../../assets/panera.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
-          ng-click="moreInfo(food)">
-        <!-- image credit: Steyn Viljoen (Pexels.com)-->
-      </ng-template>
-      <ng-template ng-if="food.typeoffood=='Chick-fil-a'">
-        <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjA0enm0tHeAhXtRt8KHYITDOIQjRx6BAgBEAU&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFile%3AChick-fil-A_Logo.svg&psig=AOvVaw1_dPETk5h-8ePm-dxdkrZU&ust=1542208040225159 -->
-        <img class="card-img-top" src="../../assets/chicken.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
-          ng-click="moreInfo(food)">
-        <!-- image credit: Valeria Boltneva (Pexels.com)-->
-      </ng-template>
-      <ng-template ng-if="food.typeoffood=='Burgers'">
-        <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjsko790tHeAhUqneAKHZZrCnEQjRx6BAgBEAU&url=https%3A%2F%2Fstockfresh.com%2Froyalty-free-stock-photos%2Fburgers&psig=AOvVaw37SWwOAkNFlIl5uE1SwcVE&ust=1542208078338533 -->
-        <img class="card-img-top" src="../../assets/burger.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
-          ng-click="moreInfo(food)">
-        <!-- image credit: Dana Tentis (Pexels.com)-->
-      </ng-template>
-      <ng-template ng-if="food.typeoffood=='Chinese Food'">
-        <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiB8OXv1dHeAhXtmOAKHdqEBzgQjRx6BAgBEAU&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fchinese%2520food%2F&psig=AOvVaw2v9a_m6aZIvB8k2Uw99p_Y&ust=1542208833109376 -->
-        <img class="card-img-top" src="../../assets/chinese.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
-          ng-click="moreInfo(food)">
-        <!-- image credit: Buenosia Carol (Pexels.com)-->
-      </ng-template>
-      <ng-template ng-if="food.typeoffood=='Fast Food'">
-        <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwigpvua1tHeAhXKct8KHdDyAi0QjRx6BAgBEAU&url=https%3A%2F%2Fdepositphotos.com%2Fvector-images%2Ffast-food.html&psig=AOvVaw0NqGQZIEFH6OECzwaEj-fu&ust=1542208895687072 -->
-        <img class="card-img-top" src="../../assets/fast.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
-          ng-click="moreInfo(food)">
-        <!-- image credit: Robin Stickel (Pexels.com)-->
-      </ng-template>
-      <ng-template ng-if="food.typeoffood=='Other'">
-        <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjeke7b1tHeAhVQmeAKHbiNBjwQjRx6BAgBEAU&url=http%3A%2F%2Fwww.other-themovie.com%2F&psig=AOvVaw0NMK8YgJUMqGiJiMFzKw2B&ust=1542209052557995 -->
-        <img class="card-img-top" src="../../assets/other.jpg" alt="Card image cap" data-toggle="modal" data-target="#foodModal"
-          ng-click="moreInfo(food)">
-        <!-- image credit: Pixabay (Pexels.com)-->
-      </ng-template>
-
-      <div class="card-body">
-<<<<<<< HEAD
-        <!-- <div class="tally-box"><span>{{food.voting}}</span></div> -->
-        <!-- <button type="button" class="thumbsUp"><img ng-click="upVote($index)" src="../../assets/thumb-up-2x.png"/></button> -->
-=======
-        <div class="tally-box"><span>{{food.voting}}</span></div>
-        <button type="button" class="thumbsUp"><img ng-click="upVote($index)" src="../../assets/thumb-up-2x.png" /></button>
->>>>>>> c2fdd6026cc9697069150cafd78cd5a30a9223cb
-        <h5 class="card-title">{{food.organization}}</h5>
-        <div class="form-group ">
-          <strong>Event Name: </strong>
-          {{food.eventname}}
-        </div>
-        <div class="form-group ">
-          <strong>Time: </strong>
-          {{food.timefrom}} - {{food.timeto}}
-        </div>
-        <div class="form-group ">
-          <strong>Date: </strong>
-          {{food.date}}
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Modal -->
-  <div class="modal fade" id="foodModal" tabindex="-1" role="dialog" aria-labelledby="foodModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="foodModalLabel">{{food.organization}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- {{food.organization}}
-          {{food.eventname}} -->
-          <ng-template ng-if="food.typeoffood=='Pizza'">
-            <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj_spv-z9HeAhXoRt8KHTjLCLAQjRx6BAgBEAU&url=https%3A%2F%2Fwww.123rf.com%2Fstock-photo%2Fitalian_pizza.html&psig=AOvVaw2Aw44gpa2Y-rd3SUhU9MNt&ust=1542207283391949 -->
-            <img class="card-img-top img-responsive" src="../../assets/pizza.jpg" alt="Card image cap">
-            <!-- image credit: Narda Yescas (Pexels.com)-->
-          </ng-template>
-          <ng-template ng-if="food.typeoffood=='Sweets'">
-            <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjatqH10NHeAhWNUt8KHchKAm4QjRx6BAgBEAU&url=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Fsweet&psig=AOvVaw0crQ8ODqxXfPBQHeRIpamw&ust=1542207528896899 -->
-            <img class="card-img-top" src="../../assets/sweets.jpg" alt="Card image cap">
-            <!-- image credit: Julio Melanda (Pexels.com)-->
-          </ng-template>
-          <ng-template ng-if="food.typeoffood=='Subway'">
-            <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwix8faR0dHeAhWic98KHd5pD7YQjRx6BAgBEAU&url=https%3A%2F%2Fwww.subway.com%2Fen-US&psig=AOvVaw3NI1y11XUH6_oWNRTqGRbB&ust=1542207596271951 -->
-            <img class="card-img-top" src="../../assets/sub.jpg" alt="Card image cap">
-            <!-- image credit: Rajesh TP (Pexels.com)-->
-          </ng-template>
-          <ng-template ng-if="food.typeoffood=='Chipotle'">
-            <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjqhoi-0tHeAhUEneAKHbVHCsEQjRx6BAgBEAU&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FChipotle_Mexican_Grill&psig=AOvVaw1M8oTwV0oUS0ZISu2rCp9D&ust=1542207952188814 -->
-            <img class="card-img-top img-responsive" src="../../assets/chipotle.jpg" alt="Card image cap">
-            <!-- image credit: Pixabay (Pexels.com)-->
-          </ng-template>
-          <ng-template ng-if="food.typeoffood=='Panera Bread'">
-            <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjR4Y_S0tHeAhVJmeAKHdEHBFQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.whig.com%2F20170616%2Fnew-panera-bread-building-will-have-drive-through-lane&psig=AOvVaw1tCln2t5A5y8oaUtyuyDeU&ust=1542207997104817 -->
-            <img class="card-img-top" src="../../assets/panera.jpg" alt="Card image cap">
-            <!-- image credit: Steyn Viljoen (Pexels.com)-->
-          </ng-template>
-          <ng-template ng-if="food.typeoffood=='Chick-fil-a'">
-            <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjA0enm0tHeAhXtRt8KHYITDOIQjRx6BAgBEAU&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFile%3AChick-fil-A_Logo.svg&psig=AOvVaw1_dPETk5h-8ePm-dxdkrZU&ust=1542208040225159 -->
-            <img class="card-img-top" src="../../assets/chicken.jpg" alt="Card image cap">
-            <!-- image credit: Valeria Boltneva (Pexels.com)-->
-          </ng-template>
-          <ng-template ng-if="food.typeoffood=='Burgers'">
-            <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjsko790tHeAhUqneAKHZZrCnEQjRx6BAgBEAU&url=https%3A%2F%2Fstockfresh.com%2Froyalty-free-stock-photos%2Fburgers&psig=AOvVaw37SWwOAkNFlIl5uE1SwcVE&ust=1542208078338533 -->
-            <img class="card-img-top" src="../../assets/burger.jpg" alt="Card image cap">
-            <!-- image credit: Dana Tentis (Pexels.com)-->
-          </ng-template>
-          <ng-template ng-if="food.typeoffood=='Chinese Food'">
-            <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiB8OXv1dHeAhXtmOAKHdqEBzgQjRx6BAgBEAU&url=https%3A%2F%2Fwww.pexels.com%2Fsearch%2Fchinese%2520food%2F&psig=AOvVaw2v9a_m6aZIvB8k2Uw99p_Y&ust=1542208833109376 -->
-            <img class="card-img-top" src="../../assets/chinese.jpg" alt="Card image cap">
-            <!-- image credit: Buenosia Carol (Pexels.com)-->
-          </ng-template>
-          <ng-template ng-if="food.typeoffood=='Fast Food'">
-            <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwigpvua1tHeAhXKct8KHdDyAi0QjRx6BAgBEAU&url=https%3A%2F%2Fdepositphotos.com%2Fvector-images%2Ffast-food.html&psig=AOvVaw0NqGQZIEFH6OECzwaEj-fu&ust=1542208895687072 -->
-            <img class="card-img-top" src="../../assets/fast.jpg" alt="Card image cap">
-            <!-- image credit: Robin Stickel (Pexels.com)-->
-          </ng-template>
-          <ng-template ng-if="food.typeoffood=='Other'">
-            <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjeke7b1tHeAhVQmeAKHbiNBjwQjRx6BAgBEAU&url=http%3A%2F%2Fwww.other-themovie.com%2F&psig=AOvVaw0NMK8YgJUMqGiJiMFzKw2B&ust=1542209052557995 -->
-            <img class="card-img-top" src="../../assets/other.jpg" alt="Card image cap">
-            <!-- image credit: Pixabay (Pexels.com)-->
-          </ng-template>
-          <div class="tally-box"><span>{{food.voting}}</span></div>
-          <button type="button" class="thumbsUp"><img ng-click="upVote($index)" src="../../assets/thumb-up-2x.png" /></button>
-          <div class="form-group row">
-            <div class="col-md-4">
-              <strong>Event Name: </strong>
-            </div>
-            <div class="col-md-8">
-              {{food.eventname}}
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-md-4">
-              <strong>Time: </strong>
-            </div>
-            <div class="col-md-8">
-              From {{food.timefrom}} to {{food.timeto}}
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-md-4">
-              <strong>Address: </strong>
-            </div>
-            <div class="col-md-8">
-              {{food.address}}, {{food.city}}, {{food.state}}, {{food.zipcode}}
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-md-4">
-              <strong>Type of Food: </strong>
-            </div>
-            <div class="col-md-8">
-              {{food.typeoffood}}
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-md-4">
-              <strong>Vegetarian Options: </strong>
-            </div>
-            <div class="col-md-8" ng-If="!food.vegetarian">
-              No
-            </div>
-            <div class="col-md-8" ng-If="food.vegetarian">
-              Yes
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-md-4">
-              <strong>Vegan Options: </strong>
-            </div>
-            <div class="col-md-8" ng-If="!food.vegan">
-              No
-            </div>
-            <div class="col-md-8" ng-If="food.vegan">
-              Yes
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-md-4">
-              <strong>Building: </strong>
-            </div>
-            <div class="col-md-8">
-              {{food.building}}
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="col-md-4">
-              <strong>Date: </strong>
-            </div>
-            <div class="col-md-8">
-              {{food.date}}
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>

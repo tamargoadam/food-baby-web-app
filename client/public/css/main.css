@@ -80,8 +80,6 @@ body {
 
 .card-img-top{
 	opacity: 1.0;
-	/* height: 50%;
-	width: 50%; */
 }
 
 .card-img-top:hover{
@@ -89,71 +87,9 @@ body {
 	cursor: pointer;
 }
 
-/* .shaded {
-	background-color: #FAFAFA;
-}
-
-.card {
-	overflow: hidden;
-}
-
-.showme {
-	display: none;
-} */
-
-
 .card:hover .showme {
 	display:block;
 }
-
-/* TODO: add animation on hover */
-/* 
-
-#infoBox {
-	float:right;
-	width: 40%;
-}
-
-table#dirtable {
-	width : 60%;
-}
-
-table#dirtable, th, td {
-	border: 1 px solid black;
-	border-collapse: collapse;
-}
-
-th, td {
-	padding: 10px;
-	text-align: left;
-}
-
-table#dirtable tr:nth-child(even) {
-	background-color: var(--divider-color);
-}
-
-table#dirtable tr:nth-child(odd) {
-	background-color: var(--accent-color);
-}
-
-table#dirtable th {
-	background-color: var(--light-primary-color);
-} */
-
-/* Their code */
-/* 
-#searchBar {
-	margin: 15px 10px;
-}
-
-.tableWrapper {
-	max-height: 400px;
-	overflow: auto;
-}
-
-.pointer {
-	cursor: pointer;
-} */
 
 @media (min-width: 36em) {
     .card-columns {

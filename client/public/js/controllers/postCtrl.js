@@ -43,6 +43,11 @@ postCtrl.controller('FoodFormController', function ($scope, Posts) {
 postCtrl.controller('DirectoryController', function($scope, Posts){
   $scope.detailedInfo = undefined;
   $scope.foods = Posts;
+  $scope.currentFood;
+
+  $scope.moreInfo = function (food) {
+    $scope.food = food; 
+  }
 
   function getAllData() {
     Posts.getData().then(function (responseData) {
@@ -63,6 +68,20 @@ postCtrl.controller('DirectoryController', function($scope, Posts){
   }
 
 });
+
+myFoodBaby.filter("dateFilter", function() {
+  return function(items, from, to) {
+    var result = [];
+
+    for (var i = 0; i < items.length; i++) {
+      var eventDate = new Date(items[i].date.substr(0,4), items[i].date.substr(5,2) - 1, items[i].date.substr(8,2));
+      if (eventDate >= from && eventDate <= to) result.push(items[i]);
+    }
+
+    if(from && to) return result;
+    else return items;
+  }
+})
 
 
 // var admin = false;

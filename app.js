@@ -50,13 +50,11 @@ app.use('/js', express.static(path.join(__dirname, '/node_modules/angular-ui-rou
  * Assign name to end points (e.g., '/api/posts/', '/api/users' ,etc. )
  */
 app.use('/api', Router);
-// app.use('/api/posts', Router);
 
 /** 6. Go to homepage for route specified */
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/client/index.html')); // send the response to the index page
 });
-
 
 /** 7. When it starts listening on the port, it will execute the callback function 
  * use port 4000 or if the server we are deploying to has a specific port use that -> 

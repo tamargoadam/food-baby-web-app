@@ -39,19 +39,19 @@ myFoodBaby.factory('Posts', ['$http', ($http) => {
     },
     createPost: function (post) {
       return $http.post('https://food-baby-web-app.herokuapp.com/api/posts', post);
-       // return $http.post('http://localhost:4000/api/posts', post);
+      //  return $http.post('http://localhost:4000/api/posts', post);
     },
     adminGetData: function () {
       return $http.get('https://food-baby-web-app.herokuapp.com/api/posts');
-       // return $http.get('http://localhost:4000/admin');
+      //  return $http.get('http://localhost:4000/admin');
     },
     deletePost: function (id) {
       return $http.delete('https://food-baby-web-app.herokuapp.com/api/posts/' + id);
-       // return $http.delete('http://localhost:4000/api/posts/' + id);
+      //  return $http.delete('http://localhost:4000/api/posts/' + id);
     },
     updateVote: function (id) {
       return $http.put('https://food-baby-web-app.herokuapp.com/api/posts/' + id);
-       // return $http.put('http://localhost:4000/api/posts/' + id);
+      //  return $http.put('http://localhost:4000/api/posts/' + id);
     }
   };
   return o;
@@ -93,6 +93,11 @@ myFoodBaby.controller('FoodFormController', ['$scope', 'Posts', ($scope, Posts) 
 myFoodBaby.controller('DirectoryController', ['$scope', 'Posts', ($scope, Posts) => {
   $scope.detailedInfo = undefined;
   $scope.foods = Posts;
+  $scope.currentFood;
+
+  $scope.moreInfo = function (food) {
+    $scope.food = food; 
+  }
 
   function getAllData() {
     Posts.getData().then((responseData) => {

@@ -8,7 +8,7 @@
       <div class="col-md-1">
         <strong>Search:</strong>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-6">
         <input type="text" class="form-control" ng-model="search">
       </div>
     </div>
@@ -16,8 +16,12 @@
       <div class="col-md-1">
         <strong>Filter:</strong>
       </div>
-      <div class="col-md-5">
-        To be Implemented
+      <div class="col-md-3">
+          <input type="date" class="form-control" required ng-model="dateFrom">
+      </div>
+      -
+      <div class="col-md-3">
+          <input type="date" class="form-control" required ng-model="dateTo">
       </div>
     </div>
     <!-- need to add filter features -->
@@ -26,7 +30,7 @@
 
   <!-- Listings on repeat below from Database -->
   <div class="card-columns">
-    <div class="card" ng-repeat="food in foods | filter: search" ng-click="showDetails(food)">
+    <div class="card" ng-repeat="food in foods | filter: search | dateFilter:dateFrom:dateTo" ng-click="showDetails(food)">
       <ng-template ng-if="food.typeoffood=='Pizza'">
         <!-- https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwj_spv-z9HeAhXoRt8KHTjLCLAQjRx6BAgBEAU&url=https%3A%2F%2Fwww.123rf.com%2Fstock-photo%2Fitalian_pizza.html&psig=AOvVaw2Aw44gpa2Y-rd3SUhU9MNt&ust=1542207283391949 -->
         <img class="card-img-top img-responsive" src="../../assets/pizza.jpg" alt="Card image cap" data-toggle="modal"

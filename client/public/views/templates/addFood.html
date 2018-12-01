@@ -1,9 +1,11 @@
 <div class="container" ng-controller="FoodFormController">
   <div class="row">
     <h1 class="main-title">Add an event below</h1>
-    <!-- <h2 class="main-title">Awesome, add the information below</h2> -->
   </div>
   <!-- Form -->
+  <div ng-show="submitSuccess()" class="alert alert-success">
+    <span>{{ submitMsg }}</span>
+  </div>
   <form ng-submit="addFreeFood()">
     <!-- 'newfood' is the new object -->
     <div class="form-group row">

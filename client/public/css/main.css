@@ -226,8 +226,9 @@ table#dirtable th {
 .tally-box{
 	position: absolute;
 	right: 50px;
-	width: 10px;
+	width: 20px;
 	height: 30px;
+	text-align: right;
 	/* background-color: grey; */
 }	
 .tally-box span{

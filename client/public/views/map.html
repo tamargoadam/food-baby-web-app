@@ -1,10 +1,8 @@
-<!-- mapbox api -->
+<!-- googlemaps api -->
 <!DOCTYPE html>
 <html>
 
 <head>
-	<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
-	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
 	<style>
 		body {
 			margin: 0;
@@ -21,33 +19,56 @@
 </head>
 
 <body>
-	<!-- mapbox api -->
-	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.min.js'></script>
-	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.3.0/mapbox-gl-geocoder.css'
-	 type='text/css' />
 	<div id='map'>
 	</div>
 	<script>
-		mapboxgl.accessToken =
-			'pk.eyJ1IjoiZGF2aWRtYW50YTciLCJhIjoiY2pueW8yZ3VuMDM2NjNrczYxcWV0bGFlbiJ9.s5mhJ0Aoe-j4yzqeHM-TmQ';
+		var map;
+      var geocoder;
+      var infoWindow;
+      var posts;
 
-		var bounds = [
-			[-82.3802, 29.6200],
-			[-82.3304, 29.6640]
-		];
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 29.6463, lng: -82.3478},
+          zoom: 15
+        });
 
-		var map = new mapboxgl.Map({
-			container: 'map',
-			style: 'mapbox://styles/mapbox/streets-v9',
-			center: [-82.3478, 29.6463],
-			maxBounds: bounds,
-			zoom: 13
-		});
+        geocoder = new google.maps.Geocoder();
+        $.getJSON("https://food-baby-web-app.herokuapp.com/api/posts", function(posts) {
+  		    for (var i in posts ){
+  		    	generatePin(geocoder, map, posts[i]);
+  		    }
+		    });
+        map.setCenter({lat: 29.6463, lng: 82.3478});
+      }
+      function generatePin(geocoder, map, Posts) {
+        geocoder.geocode({'address': Posts.city + " " + Posts.address}, function(results, status) {
+          if (status === 'OK') {
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+            });
 
-		map.addControl(new MapboxGeocoder({
-			accessToken: mapboxgl.accessToken
-		}));
+            marker.addListener('click', function() {
+              if (infoWindow) {
+                infoWindow.close();
+              }
+              infoWindow = new google.maps.InfoWindow;
+  	        	infoWindow.setPosition(marker.getPosition());
+  	        	infoWindow.setContent(Posts.eventname + "<br>" + Posts.address);
+  	        	infoWindow.open(map, marker);
+              map.setCenter(marker.getPosition());
+	         });
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
 	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDh-MmFRXG5EfNFillIGcOrqKWT41NfeX4&callback=initMap"
+    async defer></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </body>
 
 </html>

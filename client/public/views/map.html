@@ -34,7 +34,7 @@
         });
 
         geocoder = new google.maps.Geocoder();
-        $.getJSON("https://food-baby-web-app.herokuapp.com/api/posts", function(posts) {
+        $.getJSON("https://food-baby-web-app.herokuapp.com/api/posts"/*"http://localhost:4000/api/posts"*/, function(posts) {
   		    for (var i in posts ){
   		    	generatePin(geocoder, map, posts[i]);
   		    }
@@ -56,7 +56,8 @@
               }
               infoWindow = new google.maps.InfoWindow;
   	        	infoWindow.setPosition(marker.getPosition());
-  	        	infoWindow.setContent(Posts.eventname + "<br>" + Posts.address);
+  	        	infoWindow.setContent(Posts.eventname + "<br>" + Posts.organization + "<br>" + Posts.address
+						+ "<br>" + Posts.date + "<br>" + Posts.timefrom + " - " + Posts.timeto);
   	        	infoWindow.open(map, marker);
               map.setCenter(marker.getPosition());
 	         });

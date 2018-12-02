@@ -1,4 +1,4 @@
-const myRoutes = angular.module('appRoutes', ['ngRoute']);
+var myRoutes = angular.module('appRoutes', ['ngRoute']);
 
 /*2. Configuration of our application */
 myRoutes.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) => {
@@ -12,38 +12,45 @@ myRoutes.config(['$routeProvider', '$locationProvider', ($routeProvider, $locati
         .when('/register', {
             templateUrl: 'views/templates/users/register.html',
             controller: 'regCtrl',
-            controllerAs: 'register'
+            controllerAs: 'register',
+            authenticated: false
         })
         // user login page
         .when('/login', {
-            templateUrl: 'views/templates/users/login.html'
+            templateUrl: 'views/templates/users/login.html',
+            authenticated: false
         })
         // user login page
         .when('/logout', {
-            templateUrl: 'views/templates/users/logout.html'
+            templateUrl: 'views/templates/users/logout.html',
+            authenticated: true
         })
         // user profile
         .when('/profile', {
-            templateUrl: 'views/templates/users/profile.html'
+            templateUrl: 'views/templates/users/profile.html',
+            authenticated: true
         })
         .when('/facebook/:token', {
-            templateUrl: 'views/templates/users/social.html'
+            templateUrl: 'views/templates/users/social.html',
+            authenticated: false
         })
-
         // food listing page
         .when('/directory', {
             templateUrl: 'views/templates/directory.html',
-            controller: "DirectoryController"
+            controller: "DirectoryController",
+            authenticated: true
         })
         // map page
         .when('/locations', {
             templateUrl: 'views/templates/locations.html',
-            controller: "MapCtrl"
+            controller: "MapCtrl",
+            authenticated: true
         })
         // add food form
         .when('/addFood', {
             templateUrl: 'views/templates/addFood.html',
-            controller: "FoodFormController"
+            controller: "FoodFormController",
+            authenticated: true
         })
         // // admin sign in page
         // .when('/signIn', {
@@ -65,4 +72,43 @@ myRoutes.config(['$routeProvider', '$locationProvider', ($routeProvider, $locati
         enabled: true,
         requireBase: false
     });
+}]);
+
+myRoutes.run(['$rootScope', 'Auth', '$location', 'User', function ($rootScope, Auth, $location, User) {
+
+    $rootScope.$on('$routeChangeStart', function (event, next, current) {
+        // Only perform if user visited a route listed above
+        if (next.$$route !== undefined) {
+            // Check if authentication is required on route
+            if (next.$$route.authenticated === true) {
+                // Check if authentication is required, then if permission is required
+                if (!Auth.isLoggedIn()) {
+                    event.preventDefault(); // If not logged in, prevent accessing route
+                    $location.path('/'); // Redirect to home instead
+                // } else if (next.$$route.permission) {
+                //     // Function: Get current user's permission to see if authorized on route
+                //     User.getPermission().then(function(data) {
+                //         // Check if user's permission matches at least one in the array
+                //         if (next.$$route.permission[0] !== data.data.permission) {
+                //             if (next.$$route.permission[1] !== data.data.permission) {
+                //                 event.preventDefault(); // If at least one role does not match, prevent accessing route
+                //                 $location.path('/'); // Redirect to home instead
+                //             }
+                //         }
+                //     });
+                }
+            } else if (next.$$route.authenticated === false) {
+                // If authentication is not required, make sure is not logged in
+                if (Auth.isLoggedIn()) {
+                    event.preventDefault(); // If user is logged in, prevent accessing route
+                    $location.path('/profile'); // Redirect to profile instead
+                }
+            }
+        }
+
+
+
+    });
+
+
 }]);

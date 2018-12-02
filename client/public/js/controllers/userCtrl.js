@@ -15,7 +15,7 @@ userCtrl.controller('regCtrl', function ($location, $timeout, User) {
                 app.successMsg = data.data.message + "...Redirecting";
                 //redirect to home page
                 $timeout(() => {
-                    $location.path('/');
+                    $location.path('/login');
                 }, 1000);
             } else {
                 app.loading = false;

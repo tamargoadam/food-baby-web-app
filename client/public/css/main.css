@@ -216,6 +216,8 @@ body {
 	position: absolute;
 	top: 0;
 	bottom: 0;
+	padding: 0;
+	margin: 0;
 	width: 100%;
 	box-shadow: 3px 3px 10px gray;
 }

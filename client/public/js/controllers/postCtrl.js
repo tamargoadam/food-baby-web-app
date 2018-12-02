@@ -130,7 +130,7 @@ postCtrl.controller('MapCtrl', function ($scope, Posts) {
           infoWindow.setContent(Posts.eventname + "<br>" + Posts.organization + "<br>" + Posts.address +
             "<br>" + Posts.date + "<br>" + Posts.timefrom + " - " + Posts.timeto);
           infoWindow.open(map, marker);
-          map.setCenter(marker.getPosition());
+          // map.setCenter(marker.getPosition());
         });
       } else {
         alert('Geocode was not successful for the following reason: ' + status);

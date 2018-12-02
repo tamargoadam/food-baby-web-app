@@ -63,38 +63,6 @@ postCtrl.controller('DirectoryController', function ($scope, Posts) {
   }
   getAllData(); //calls this function to initialize list with the data
 
-  function convertDate(date){
-    //converting date of posts
-    var newFormat = date.split("-");
-    date = newFormat[1] + "/" + newFormat[2] + "/" + newFormat[0];
-    return date;
-  }
-
-  function convertTime(time) {
-    //Converting time of posts from military time to EST
-    time = time.split(':');
-    //Changes hour to EST
-    var timeHour = Number(time[0]) - 5;
-    var timeMin = Number(time[1]);
-    //Make sure that hour is positive
-    if (timeHour < 0) {
-      timeHour = timeHour + 24;
-    }
-    //Check if hour is greater than 12
-    if (timeHour > 0 && timeHour <= 12) {
-      total = "" + timeHour;
-    } else if (timeHour > 12) {
-      total = "" + (timeHour - 12);
-    } else if (timeHour == 0) {
-      startTotal = "12";
-    }
-
-    total += (timeMin < 10) ? ":0" + timeMin : ":" + timeMin;
-    total += (timeHour >= 12) ? " P.M." : " A.M.";
-    return total;
-  }
-
-
   // $scope.upVote = function (index) {
   //   Posts.updateVote($scope.foods[index]._id).then(() => {
   //     getAllData();
@@ -110,7 +78,7 @@ postCtrl.filter("dateFilter", function () {
     var result = [];
 
     for (var i = 0; i < items.length; i++) {
-      var eventDate = new Date(items[i].date.substr(6), items[i].date.substr(0, 2) - 1,items[i].date.substr(3, 2) )
+      var eventDate = new Date(items[i].date.substr(6), items[i].date.substr(0, 2) - 1, items[i].date.substr(3, 2))
       // var eventDate = new Date(items[i].date.substr(0, 4), items[i].date.substr(5, 2) - 1, items[i].date.substr(8, 2));
       if (eventDate >= from && eventDate <= to) result.push(items[i]);
     }
@@ -165,7 +133,7 @@ postCtrl.controller('MapCtrl', function ($scope, Posts) {
           infoWindow = new google.maps.InfoWindow;
           infoWindow.setPosition(marker.getPosition());
           infoWindow.setContent(Posts.eventname + "<br>" + Posts.organization + "<br>" + Posts.address +
-            "<br>" + Posts.date + "<br>" + convertTime(Posts.timefrom) + " - " + convertTime(Posts.timeto));
+            "<br>" + convertDate(Posts.date) + "<br>" + convertTime(Posts.timefrom) + " - " + convertTime(Posts.timeto));
           infoWindow.open(map, marker);
           // map.setCenter(marker.getPosition());
         });
@@ -174,34 +142,40 @@ postCtrl.controller('MapCtrl', function ($scope, Posts) {
       }
     });
 
-    function convertTime(time) {
-      //Converting time of posts from military time to EST
-      time = time.split(':');
-      //Changes hour to EST
-      var timeHour = Number(time[0]) - 5;
-      var timeMin = Number(time[1]);
-      //Make sure that hour is positive
-      if (timeHour < 0) {
-        timeHour = timeHour + 24;
-      }
-      //Check if hour is greater than 12
-      if (timeHour > 0 && timeHour <= 12) {
-        total = "" + timeHour;
-      } else if (timeHour > 12) {
-        total = "" + (timeHour - 12);
-      } else if (timeHour == 0) {
-        startTotal = "12";
-      }
 
-      total += (timeMin < 10) ? ":0" + timeMin : ":" + timeMin;
-      total += (timeHour >= 12) ? " P.M." : " A.M.";
-      return total;
-    }
   };
 
 });
 
+//Converting time of posts from military time to EST
+function convertTime(time) {
+  time = time.split(':');
+  //Changes hour to EST
+  var timeHour = Number(time[0]) - 5;
+  var timeMin = Number(time[1]);
+  //Make sure that hour is positive
+  if (timeHour < 0) {
+    timeHour = timeHour + 24;
+  }
+  //Check if hour is greater than 12
+  if (timeHour > 0 && timeHour <= 12) {
+    total = "" + timeHour;
+  } else if (timeHour > 12) {
+    total = "" + (timeHour - 12);
+  } else if (timeHour == 0) {
+    startTotal = "12";
+  }
 
+  total += (timeMin < 10) ? ":0" + timeMin : ":" + timeMin;
+  total += (timeHour >= 12) ? " P.M." : " A.M.";
+  return total;
+}
+//converting date of posts
+function convertDate(date) {
+  var newFormat = date.split("-");
+  date = newFormat[1] + "/" + newFormat[2] + "/" + newFormat[0];
+  return date;
+}
 
 // var admin = false;
 // /* 6. Controller for the Navigation */

@@ -47,6 +47,33 @@ postCtrl.controller('DirectoryController', function ($scope, Posts) {
 
   $scope.moreInfo = function (food) {
     $scope.food = food;
+    $scope.food.timefrom = convertTime($scope.food.timefrom);
+    $scope.food.timeto = convertTime($scope.food.timeto);
+  }
+  function convertTime(time) {
+        //Converting time of posts from military time to EST
+            time = time.split(':');
+            //Changes hour to EST
+            var timeHour = Number(time[0]) - 5;
+            var timeMin = Number(time[1]);
+            //Make sure that hour is positive
+            if(timeHour < 0) {
+              timeHour = timeHour + 24;
+            }
+            //Check if hour is greater than 12
+            if(timeHour > 0 && timeHour <= 12) {
+              total = "" + timeHour;
+            }
+            else if(timeHour > 12) {
+              total = "" + (timeHour - 12);
+            }
+            else if(timeHour == 0) {
+              startTotal = "12";
+            }
+            //Adding it all together in a string
+            total += (timeMin < 10) ? ":0" + timeMin : ":" + timeMin;
+            total += (timeHour >= 12) ? " P.M.": " A.M.";
+            return total;
   }
 
   function getAllData() {

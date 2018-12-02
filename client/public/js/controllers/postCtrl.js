@@ -128,7 +128,7 @@ postCtrl.controller('MapCtrl', function ($scope, Posts) {
           infoWindow = new google.maps.InfoWindow;
           infoWindow.setPosition(marker.getPosition());
           infoWindow.setContent(Posts.eventname + "<br>" + Posts.organization + "<br>" + Posts.address +
-            "<br>" + Posts.date + "<br>" + Posts.timefrom + " - " + Posts.timeto);
+            "<br>" + Posts.date + "<br>" + convertTime(Posts.timefrom) + " - " + convertTime(Posts.timeto));
           infoWindow.open(map, marker);
           // map.setCenter(marker.getPosition());
         });
@@ -136,6 +136,31 @@ postCtrl.controller('MapCtrl', function ($scope, Posts) {
         alert('Geocode was not successful for the following reason: ' + status);
       }
     });
+    function convertTime(time) {
+        //Converting time of posts from military time to EST
+            time = time.split(':');
+            //Changes hour to EST
+            var timeHour = Number(time[0]) - 5;
+            var timeMin = Number(time[1]);
+            //Make sure that hour is positive
+            if(timeHour < 0) {
+              timeHour = timeHour + 24;
+            }
+            //Check if hour is greater than 12
+            if(timeHour > 0 && timeHour <= 12) {
+              total = "" + timeHour;
+            }
+            else if(timeHour > 12) {
+              total = "" + (timeHour - 12);
+            }
+            else if(timeHour == 0) {
+              startTotal = "12";
+            }
+            
+            total += (timeMin < 10) ? ":0" + timeMin : ":" + timeMin;
+            total += (timeHour >= 12) ? " P.M.": " A.M.";
+            return total;
+      }
   };
 
 });

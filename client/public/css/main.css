@@ -87,6 +87,11 @@ body {
 	cursor: pointer;
 }
 
+.modal-body .card-img-top:hover {
+	opacity: 1;
+	cursor: auto;
+}
+
 .card:hover .showme {
 	display: block;
 }

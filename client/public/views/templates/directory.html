@@ -102,8 +102,7 @@
           </div>
           <div class="form-group ">
             <strong>Time: </strong>
-              <script> convertTime({{food.timefrom}})</script> - <script> convertTime({{food.timeto}})</script>
-            <!--{{food.timefrom}} - {{food.timeto}}-->
+            {{food.timefrom}} - {{food.timeto}}
           </div>
           <div class="form-group ">
             <strong>Date: </strong>
@@ -122,7 +121,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div class="modal-body"> 
             <!-- {{food.organization}}
             {{food.eventname}} -->
             <ng-template ng-if="food.typeoffood=='Pizza'">
@@ -190,8 +189,7 @@
                 <strong>Time: </strong>
               </div>
               <div class="col-md-8">
-                  <script>convertTime({{food.timefrom}}) </script> - <script>convertTime({{food.timeto}}) </script>
-                 <!--From {{food.timefrom}} to {{food.timeto}} -->
+                 {{food.timefrom}} - {{food.timeto}}
               </div>
             </div>
             <div class="form-group row">
@@ -255,31 +253,4 @@
         </div>
       </div>
     </div>
-    <script> 
-    function convertTime(time) {
-        //Converting time of posts from military time to EST
-            time = time.split(':');
-            //Changes hour to EST
-            var timeHour = Number(time[0]) - 5;
-            var timeMin = Number(time[1]);
-            //Make sure that hour is positive
-            if(timeHour < 0) {
-              timeHour = timeHour + 24;
-            }
-            //Check if hour is greater than 12
-            if(timeHour > 0 && timeHour <= 12) {
-              total = "" + timeHour;
-            }
-            else if(timeHour > 12) {
-              total = "" + (timeHour - 12);
-            }
-            else if(timeHour == 0) {
-              startTotal = "12";
-            }
-            //Adding it all together in a string
-            total += (timeMin < 10) ? ":0" + timeMin : ":" + timeMin;
-            total += (timeHour >= 12) ? " P.M.": " A.M.";
-            return total;
-  }
-    </script>
   </div>

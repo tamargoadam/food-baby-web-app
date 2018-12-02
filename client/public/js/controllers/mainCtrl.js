@@ -1,7 +1,7 @@
 const mainCtrl = angular.module('mainController', ['authServices']);
 
 //pass in factory to the controller that authenticates a user logining in
-mainCtrl.controller('mainCtrl', function (Auth, $location, $timeout, $rootScope) {
+mainCtrl.controller('mainCtrl', function (Auth, $location, $timeout, $rootScope, $window) {
     var app = this;
     app.loadme = false; // hide html until this becomes true
     // Will run code every time a route changes

@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha",
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "lint": "eslint app.js"
   },
   "author": "",
@@ -25,6 +25,8 @@
     "mongod": "2.0.0",
     "mongodb": "3.1.8",
     "mongoose": "5.3.9",
+    "mongoose-title-case": "0.0.4",
+    "mongoose-validator": "2.1.0",
     "morgan": "1.9.1",
     "passport": "0.4.0",
     "passport-facebook": "2.1.1",

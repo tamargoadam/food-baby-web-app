@@ -12,7 +12,6 @@ userServ.factory('User', function ($http) {
     create: function (regData) {
       return $http.post('/api/users', regData);
     }
-
   };
   return userFactory;
 });

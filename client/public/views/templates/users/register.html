@@ -3,9 +3,13 @@
 
 
   <form ng-submit="register.regUser(regData);">
+    <!-- Name -->
+    <label>Name:</label>
+    <input class="form-control" type="text" name="name" placeholder="please enter name" ng-model="register.regData.name">
+    <br>
     <!-- Email -->
     <label>Email:</label>
-    <input class="form-control" type="text" name="email" pattern="*@ufl.edu" placeholder="please enter email" ng-model="register.regData.email">
+    <input class="form-control" type="text" name="email" placeholder="please enter email" ng-model="register.regData.email">
     <br>
     <!-- Username -->
     <label>Username:</label>

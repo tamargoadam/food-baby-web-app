@@ -5,10 +5,10 @@ userCtrl.controller('regCtrl', function ($location, $timeout, User) {
     var app = this;
 
     this.regUser = function (regData) {
-        app.loading = true;
+        app.loading = true; 
         app.errorMsg = false;
 
-        User.create(app.regData).then((data) => {
+        User.create(app.regData).then(function(data){
             if (data.data.success) {
                 app.loading = false;
                 //show success message

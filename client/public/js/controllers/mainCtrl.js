@@ -10,6 +10,7 @@ mainCtrl.controller('mainCtrl', function (Auth, $location, $timeout, $rootScope)
         if (Auth.isLoggedIn()) {
             app.isLoggedIn = true;
             Auth.getUser().then(function (data) {
+                // app.name = data.data.name;
                 app.username = data.data.username;
                 app.useremail = data.data.email;
                 app.loadme = true;

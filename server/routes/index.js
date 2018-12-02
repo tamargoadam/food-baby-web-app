@@ -11,30 +11,73 @@ var Post = require('../models/postsModel.js');
 var User = require('../models/user.js');
 
 //USER REGISTRATION ROUTE
-router.post('/users', (req, res) => {
+router.post('/users', function (req, res) {
   // https://localhost:port/api/users
   var user = new User(); // Create new User object
   user.username = req.body.username; // Save username from request to User object
   user.password = req.body.password; // Save password from request to User object
   user.email = req.body.email; // Save email from request to User object
-  if (req.body.username == null || req.body.username == "" || req.body.password == null ||
-    req.body.password == "" || req.body.email == null || req.body.email == "") {
+  user.name = req.body.name; // Save name from request to User object
+
+  // user.temporarytoken = jwt.sign({
+  //   username: user.username,
+  //   email: user.email
+  // }, secret, {
+  //   expiresIn: '24h'
+  // }); // Create a token for activating account through e-mail
+
+  if (req.body.username === null || req.body.username === '' || req.body.password === null ||
+    req.body.password === '' || req.body.email === null || req.body.email === '' ||
+    req.body.name === null || req.body.name === '') {
     res.json({
       success: false,
-      message: "Ensure username, password, and email are provided"
+      message: 'Ensure username, email, and password were provided'
     });
   } else {
-    user.save((err) => {
+    // Save new user to database
+    user.save(function (err) {
       if (err) {
-        res.json({
-          success: false,
-          message: 'Username or Email already exists'
-        });
+        //duplicate error
+        if (err.code == 11000) { // Display error if username or email already taken
+          res.json({
+            success: false,
+            message: 'That username or email is already taken'
+          });
+        } else {
+          // Check if any validation errors exists (from user model)
+          if (err.errors.name) {
+            res.json({
+              success: false,
+              message: err.errors.name.message
+            }); // Display error in validation (name)
+          } else if (err.errors.email) {
+            res.json({
+              success: false,
+              message: err.errors.email.message
+            }); // Display error in validation (email)
+          } else if (err.errors.username) {
+            res.json({
+              success: false,
+              message: err.errors.username.message
+            }); // Display error in validation (username)
+          } else if (err.errors.password) {
+            res.json({
+              success: false,
+              message: err.errors.password.message
+            }); // Display error in validation (password)
+          } else {
+            res.json({
+              success: false,
+              message: err
+            }); // Display any other errors with validation
+          }
+        }
       } else {
+        System.out.println("no error?");
         res.json({
           success: true,
-          message: 'User was successfully created'
-        });
+          message: 'Account registered!'
+        }); // Send success message back to controller/request
       }
     });
   }
@@ -90,20 +133,20 @@ router.post('/authenticate', (req, res) => {
     });
 
 });
- // Middleware for Routes that checks for token -
- // Place all routes after this route that require the user to already be logged in
-router.use(function(req, res, next) {
+// Middleware for Routes that checks for token -
+// Place all routes after this route that require the user to already be logged in
+router.use(function (req, res, next) {
   // Check for token in body, URL, or headers
   var token = req.body.token || req.body.query || req.headers['x-access-token'];
   if (token) {
     //verify token symmetric
     jwt.verify(token, secret, function (err, decoded) {
-      if(err){
+      if (err) {
         res.json({
-          success: false, 
+          success: false,
           message: 'Token invalid'
         });
-      }else{
+      } else {
         //have a token and it is verified
         // assign to local variable
         req.decoded = decoded;

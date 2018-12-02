@@ -18,14 +18,12 @@ router.post('/users', function (req, res) {
   user.password = req.body.password; // Save password from request to User object
   user.email = req.body.email; // Save email from request to User object
   user.name = req.body.name; // Save name from request to User object
-
   // user.temporarytoken = jwt.sign({
   //   username: user.username,
   //   email: user.email
   // }, secret, {
   //   expiresIn: '24h'
   // }); // Create a token for activating account through e-mail
-
   if (req.body.username === null || req.body.username === '' || req.body.password === null ||
     req.body.password === '' || req.body.email === null || req.body.email === '' ||
     req.body.name === null || req.body.name === '') {
@@ -37,8 +35,10 @@ router.post('/users', function (req, res) {
     // Save new user to database
     user.save(function (err) {
       if (err) {
+        // console.log(err);
         //duplicate error
         if (err.code == 11000) { // Display error if username or email already taken
+          // console.log("duplicate?");
           res.json({
             success: false,
             message: 'That username or email is already taken'
@@ -73,7 +73,6 @@ router.post('/users', function (req, res) {
           }
         }
       } else {
-        System.out.println("no error?");
         res.json({
           success: true,
           message: 'Account registered!'

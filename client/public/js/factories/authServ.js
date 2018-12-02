@@ -34,10 +34,10 @@ authServ.factory('Auth', function ($http, AuthToken) {
                     message: 'User has no token'
                 }); // Reject if no token exists
             }
-        },
-        facebook: function (token) {
-            AuthToken.setToken(token); // Set token retrieved from passportJS
         }
+        // facebook: function (token) {
+        //     AuthToken.setToken(token); // Set token retrieved from passportJS
+        // }
 
     }
 

@@ -6,7 +6,7 @@ var secret = 'pickles'; //should be private
 
 
 var passport = function (app, passport) {
-
+    // Start Passport Configuration Settings
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(session({
@@ -17,15 +17,25 @@ var passport = function (app, passport) {
             secure: false
         }
     }));
+    // End Passport Configuration Settings
     passport.serializeUser(function (user, done) {
-        jwt.sign({
-            username: user.username,
-            email: user.email
-        }, secret, {
-            // token will expire in 24 hours
-            expiresIn: '24h'
-        });
-        done(null, user.id);
+        // Check if the user has an active account
+        if (user.active) {
+            // Check if user's social media account has an error
+            if (user.error) {
+                token = 'unconfirmed/error'; // Set url to different error page
+            } else {
+                token = jwt.sign({
+                    username: user.username,
+                    email: user.email
+                }, secret, {
+                    expiresIn: '24h'
+                }); // If account active, give user token
+            }
+        } else {
+            token = 'inactive/error'; // If account not active, provide invalid token for use in redirecting later
+        }
+        done(null, user.id); // Return user object
     });
 
     passport.deserializeUser(function (id, done) {
@@ -37,7 +47,7 @@ var passport = function (app, passport) {
     passport.use(new FacebookStrategy({
             clientID: '1210152449147080',
             clientSecret: 'f5df35153ed8653d6ad84e172d4dc7aa',
-            callbackURL: "https://localhost:4000/auth/facebook/callback",
+            callbackURL: "https://food-baby-web-app.herokuapp.com/auth/facebook/callback",
             profileFields: ['id', 'displayName', 'photos', 'email'] //customize of what we get from FB
         },
         function (accessToken, refreshToken, profile, done) {
@@ -71,7 +81,8 @@ var passport = function (app, passport) {
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
             failureRedirect: '/login'
-        }), function(req, res){
+        }),
+        function (req, res) {
             //success redirect to
             res.redirect('/facebook/' + token);
         }

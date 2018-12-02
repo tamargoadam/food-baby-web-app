@@ -12,7 +12,11 @@
     <input class="form-control" type="password" name="password" placeholder="please enter password" ng-model="main.loginData.password">
     <br>
     <button class="btn btn-primary" type="submit">Login</button>&nbsp;
-    <a href="/auth/facebook" target="_blank"><button type="button" class="btn btn-success">Facebook</button></a>
+    <!-- Facebook Button -->
+    <a href="#" ng-disabled="main.disabled || facebook.disabled" ng-click="main.facebook();">Facebook
+      <!-- <img class="social-icons" src="assets/images/facebook.svg"> -->
+  </a>
+    <!-- <a href="/auth/facebook" target="_blank"><button type="button" class="btn btn-success">Facebook</button></a> -->
   </form>
 
   <br>
@@ -29,6 +33,10 @@
 
   <div class="row show-hide-message" ng-show="main.errorMsg">
     <div class="alert alert-danger">{{ main.errorMsg }}</div>
+  </div>
+
+  <div class="row show-hide-message" ng-show="facebook.errorMsg">
+    <div class="alert alert-danger">{{ facebook.errorMsg }}</div>
   </div>
 
 </div>

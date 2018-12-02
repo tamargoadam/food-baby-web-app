@@ -20,8 +20,17 @@ mainCtrl.controller('mainCtrl', function (Auth, $location, $timeout, $rootScope)
             app.username = '';
             app.loadme = true;
         }
+        //for facebook
+        if($location.hash() == '_=_') {
+            $location.hash(null);
+        }
     });
 
+     // Function to redirect users to facebook authentication page
+     this.facebook = function() {
+        app.disabled = true;
+        $window.location = $window.location.protocol + '//' + $window.location.host + '/auth/facebook';
+    };
 
     this.doLogin = function (loginData) {
         app.loading = true;

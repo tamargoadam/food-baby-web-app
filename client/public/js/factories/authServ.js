@@ -34,7 +34,11 @@ authServ.factory('Auth', function ($http, AuthToken) {
                     message: 'User has no token'
                 }); // Reject if no token exists
             }
+        },
+        facebook: function (token) {
+            AuthToken.setToken(token); // Set token retrieved from passportJS
         }
+
     }
 
     return authFactory;
@@ -65,8 +69,8 @@ authServ.factory('AuthInterceptors', function (AuthToken) {
     var authInterceptorsFactory = {
         // Function to check for token in local storage and attach to header if so
         request: function (config) {
-            var token = AuthToken.getToken();  // Check if a token is in local storage
-            
+            var token = AuthToken.getToken(); // Check if a token is in local storage
+
             if (token) { //If exists, attach to headers
                 config.headers['x-access-token'] = token;
             }

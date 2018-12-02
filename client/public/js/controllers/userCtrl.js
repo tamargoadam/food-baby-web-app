@@ -25,3 +25,26 @@ userCtrl.controller('regCtrl', function ($location, $timeout, User) {
         });
     };
 });
+
+
+// Controller: facebookCtrl is used finalize facebook login
+userCtrl.controller('facebookCtrl', function($routeParams, Auth, $location, $window, $scope) {
+
+    var app = this;
+    app.errorMsg = false; // Clear errorMsg on page load
+    app.expired = false; // Clear expired on page load
+    app.disabled = true; // On page load, remove disable lock from form
+
+    // Check if callback was successful 
+    if ($window.location.pathname == '/facebookerror') {
+        $scope.alert = 'alert alert-danger'; // Set class for message
+        app.errorMsg = 'Facebook e-mail not found in database.'; // If error, display custom message
+    } else if ($window.location.pathname == '/facebook/inactive/error') {
+        app.expired = true; // Variable to activate "Resend Link Button"
+        $scope.alert = 'alert alert-danger'; // Set class for message
+        app.errorMsg = 'Account is not yet activated. Please check your e-mail for activation link.'; // If error, display custom message
+    } else {
+        Auth.socialMedia($routeParams.token); // If no error, set the token
+        $location.path('/'); // Redirect to home page
+    }
+})

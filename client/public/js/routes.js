@@ -30,9 +30,19 @@ myRoutes.config(['$routeProvider', '$locationProvider', ($routeProvider, $locati
             templateUrl: 'views/templates/users/profile.html',
             authenticated: true
         })
+        // Facebook
         .when('/facebook/:token', {
             templateUrl: 'views/templates/users/social.html',
-            authenticated: false
+            controller: 'facebookCtrl',
+            controllerAs: 'facebook'
+            // authenticated: false
+        })
+        // Route: Facebook Error
+        .when('/facebookerror', {
+            templateUrl: 'app/views/pages/users/login.html',
+            controller: 'facebookCtrl',
+            controllerAs: 'facebook',
+            // authenticated: false
         })
         // food listing page
         .when('/directory', {

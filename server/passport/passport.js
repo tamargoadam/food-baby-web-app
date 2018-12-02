@@ -51,29 +51,17 @@ var passport = function (app, passport) {
             profileFields: ['id', 'displayName', 'photos', 'email'] //customize of what we get from FB
         },
         function (accessToken, refreshToken, profile, done) {
-            console.log(profile._json.email);
-            if (profile.emails) {
-                User.findOne({
-                    email: profile._json.email
-                }).select('username password email').
-                exec(function (err, user) {
-                    if (err) {
-                        done(err);
-                    } else {
-                        if (user && user != null) {
-                            done(null, user);
-                        } else {
-                            done(err);
-                        }
-                    }
-                });
-            } else {
-                user = {}; // Since no user object exists, create a temporary one in order to return an error
-                user.id = 'null'; // Temporary id
-                user.active = true; // Temporary status
-                user.error = true; // Ensure error is known to exist
-                done(null, user); // Serialize and catch error
-            }
+            User.findOne({
+                email: profile._json.email
+            }).select('username active password email').exec(function (err, user) {
+                if (err) done(err);
+
+                if (user && user !== null) {
+                    done(null, user);
+                } else {
+                    done(err);
+                }
+            });
 
         }
     ));
